@@ -15,8 +15,8 @@ The foundation for Velocity support has been established:
 ```
 src/main/java/ro/deiutzblaxo/Purgatory/Velocity/
 ├── MainVelocity.java ✅ (DONE)
-├── ConfigManager.java
-├── ServerManager.java  
+├── ConfigManager.java ✅ (DONE)
+├── ServerManager.java ✅ (DONE)  
 ├── SpigotCommunication.java
 ├── Commands/
 │   ├── BanCommand.java ✅ (DONE)
