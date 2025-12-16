@@ -19,14 +19,14 @@ src/main/java/ro/deiutzblaxo/Purgatory/Velocity/
 ├── ServerManager.java  
 ├── SpigotCommunication.java
 ├── Commands/
-│   ├── BanCommand.java
-│   ├── TempBanCommand.java
-│   ├── UnbanCommand.java
-│   ├── InfoCommand.java
-│   ├── WarningCommand.java
-│   ├── TeleportCommand.java
-│   ├── Teleport2Command.java
-│   └── PurgatoryCommand.java
+│   ├── BanCommand.java ✅ (DONE)
+│   ├── TempBanCommand.java ✅ (DONE)
+│   ├── UnbanCommand.java ✅ (DONE)
+│   ├── InfoCommand.java ✅ (DONE)
+│   ├── WarningCommand.java ✅ (DONE)
+│   ├── TeleportCommand.java ✅ (DONE)
+│   ├── Teleport2Command.java ✅ (DONE)
+│   └── PurgatoryCommand.java ✅ (DONE)
 ├── Event/
 │   └── Events.java
 └── Factory/
@@ -38,7 +38,7 @@ src/main/java/ro/deiutzblaxo/Purgatory/Velocity/
 
 ## 📋 Step-by-Step Conversion Instructions
 
-### 1. Command Classes
+### 1. ✅ Command Classes
 
 **BungeeCord Pattern:**
 ```java
