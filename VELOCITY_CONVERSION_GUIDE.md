@@ -90,7 +90,7 @@ public class BanCommand implements SimpleCommand {
 
 ---
 
-### 2. Event Classes
+### 2.✅ Event Classes
 
 **BungeeCord Pattern:**
 ```java
@@ -134,7 +134,7 @@ public class Events {
 
 ---
 
-### 3. ConfigManager
+### 3.✅ ConfigManager
 
 **Key Changes Needed:**
 - Replace `File` with `Path` from `java.nio.file`
@@ -153,7 +153,7 @@ Path configFile = plugin.getDataDirectory().resolve("config.yml");
 
 ---
 
-### 4. ServerManager
+### 4.✅ ServerManager
 
 **Key Changes:**
 - `ServerInfo` → `RegisteredServer`
