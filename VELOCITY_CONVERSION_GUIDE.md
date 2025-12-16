@@ -17,7 +17,7 @@ src/main/java/ro/deiutzblaxo/Purgatory/Velocity/
 ├── MainVelocity.java ✅ (DONE)
 ├── ConfigManager.java ✅ (DONE)
 ├── ServerManager.java ✅ (DONE)  
-├── SpigotCommunication.java
+├── SpigotCommunication.java ✅ (DONE)
 ├── Commands/
 │   ├── BanCommand.java ✅ (DONE)
 │   ├── TempBanCommand.java ✅ (DONE)
@@ -175,7 +175,7 @@ public Optional<RegisteredServer> getHubServer() {
 
 ---
 
-### 5. SpigotCommunication (Plugin Messaging)
+### 5. ✅ SpigotCommunication (Plugin Messaging)
 
 **BungeeCord Pattern:**
 ```java
