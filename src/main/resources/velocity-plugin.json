@@ -1,0 +1,13 @@
+{
+  "id": "purgatory",
+  "name": "Purgatory",
+  "version": "5.1.2-1.21.10",
+  "description": "Advanced ban system for Minecraft servers with custom tasks, warnings, and purgatory worlds",
+  "url": "https://www.spigotmc.org/resources/65838/",
+  "authors": [
+    "Deiutz",
+    "TheFlood424K"
+  ],
+  "dependencies": [],
+  "main": "ro.deiutzblaxo.Purgatory.Velocity.MainVelocity"
+}
