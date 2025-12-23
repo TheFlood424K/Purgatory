@@ -69,6 +69,14 @@ public class ConfigManager {
     public static String getMessage(String key) {
         return messages.getOrDefault(key, "Message not found: " + key);
     }
+
+        /**
+     * Get all messages from the config
+     * @return The messages map
+     */
+    public static Map<String, String> getMessages() {
+        return messages;
+    }
     
     /**
      * Get the data directory
