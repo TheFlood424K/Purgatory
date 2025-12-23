@@ -30,13 +30,13 @@ import ro.deiutzblaxo.Purgatory.Utils.ConfigManager;
 import ro.deiutzblaxo.Purgatory.Utils.ServerManager;
 
 import ro.deiutzblaxo.Purgatory.Velocity.Commands.BanCommand;
-import ro.deiutzblaxo.Purgatory.Velocity.Commands.InfoCommand;
+import ro.deiutzblaxo.Purgatory.Velocity.Commands.CheckCommand;
 import ro.deiutzblaxo.Purgatory.Velocity.Commands.PurgatoryCommand;
-import ro.deiutzblaxo.Purgatory.Velocity.Commands.Teleport2Command;
+import ro.deiutzblaxo.Purgatory.Velocity.Commands.EditCommand;
 import ro.deiutzblaxo.Purgatory.Velocity.Commands.TeleportCommand;
 import ro.deiutzblaxo.Purgatory.Velocity.Commands.TempBanCommand;
 import ro.deiutzblaxo.Purgatory.Velocity.Commands.UnbanCommand;
-import ro.deiutzblaxo.Purgatory.Velocity.Commands.WarningCommand;
+import ro.deiutzblaxo.Purgatory.Velocity.Commands.ReloadCommand;
 import ro.deiutzblaxo.Purgatory.Velocity.Event.Events;
 
 @Plugin(
@@ -121,12 +121,12 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Info")).build(),
-            new InfoCommand(this)
+            new CheckCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Warning")).build(),
-            new WarningCommand(this)
+            new ReloadCommand(this)
         );
         
         commandManager.register(
@@ -136,7 +136,7 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpo")).build(),
-            new Teleport2Command(this)
+            new EditCommand(this)
         );
         
         commandManager.register(
