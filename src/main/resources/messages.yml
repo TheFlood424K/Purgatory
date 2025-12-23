@@ -1,0 +1,49 @@
+# Purgatory Plugin - Messages Configuration
+# All messages support color codes using & (e.g., &c for red, &a for green)
+# Use {player}, {target}, {reason}, {time}, {server}, etc. as placeholders
+
+# General Messages
+playerOnly: "&cOnly players can use this command."
+playerNotFound: "&cPlayer '{player}' not found."
+noPermission: "&cYou don't have permission to use this command."
+
+# Ban Command Messages
+banSuccess: "&a{target} has been permanently banned."
+banBroadcast: "&c{target} was banned by {player} for: {reason}"
+alreadyBanned: "&c{target} is already banned."
+
+# Tempban Command Messages
+tempbanSuccess: "&a{target} has been temporarily banned for {time}."
+tempbanBroadcast: "&c{target} was temporarily banned by {player} for {time}. Reason: {reason}"
+invalidDuration: "&cInvalid duration format. Use: 1d, 2h, 30m, etc."
+
+# Unban Command Messages
+unbanSuccess: "&a{target} has been unbanned."
+notBanned: "&c{target} is not banned."
+
+# Check Command Messages
+checkBanned: "&cPlayer: &e{player}\n&cBanned: &eYes\n&cReason: &e{reason}\n&cBanned by: &e{bannedBy}\n&cExpires: &e{expiry}"
+checkNotBanned: "&aPlayer: &e{player}\n&aBanned: &eNo"
+
+# Edit Command Messages
+editSuccess: "&aBan details updated for {target}."
+editUsage: "&cUsage: /purgatory edit <player> <reason|time> <new_value>"
+
+# Teleport Command Messages
+teleportSuccess: "&aTeleporting to {target}'s banned server: {server}"
+playerNoServer: "&c{target} has no assigned server."
+
+# Reload Command Messages
+configReload: "&aConfiguration reloaded successfully!"
+configReloadFail: "&cFailed to reload configuration: {error}"
+
+# Help Command Messages
+helpHeader: "\n&7======================\n&6&lPurgatory Help&r\n&7======================\n"
+helpBan: "&e/ban <player> <reason> &7- Ban a player"
+helpTempban: "&e/tempban <player> <time> <reason> &7- Temporarily ban a player"
+helpUnban: "&e/unban <player> &7- Unban a player"
+helpCheck: "&e/check <player> &7- Check player status"
+helpEdit: "&e/purgatory edit <player> &7- Edit ban details"
+helpTeleport: "&e/purgatory tp <player> &7- Teleport to banned player"
+helpReload: "&e/purgatory reload &7- Reload configuration"
+helpFooter: "&7======================\n"
