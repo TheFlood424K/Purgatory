@@ -1,6 +1,6 @@
 package ro.deiutzblaxo.Purgatory.Utils;
 
-import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.command.CommandSource;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
@@ -47,12 +47,13 @@ public class Messages {
     }
     
     /**
-     * Send a message to a Velocity player
+     * Send a message to a Velocity CommandSource (Player or Console)
+     * Changed from Player to CommandSource to support both players and console
      */
-    public static void sendMessage(Player player, String key, Object... replacements) {
+    public static void sendMessage(CommandSource source, String key, Object... replacements) {
         String message = getMessage(key, replacements);
         Component component = LegacyComponentSerializer.legacyAmpersand().deserialize(message);
-        player.sendMessage(component);
+        source.sendMessage(component);
     }
     
     /**
