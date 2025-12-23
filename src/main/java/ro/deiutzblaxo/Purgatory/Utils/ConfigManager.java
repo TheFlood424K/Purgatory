@@ -85,4 +85,45 @@ public class ConfigManager {
     public static Path getDataDirectory() {
         return dataDirectory;
     }
+
+        /**
+     * Helper method to get string from a map
+     * @param map The map to get from
+     * @param key The key
+     * @return The value or default
+     */
+    public static String getString(Map<String, String> map, String key) {
+        return map.getOrDefault(key, "Value not found: " + key);
+    }
+    
+    /**
+     * Get a simple config wrapper
+     * @return Config wrapper
+     */
+    public static Config getConfig() {
+        return new Config();
+    }
+    
+    /**
+     * Simple config wrapper with default values
+     */
+    public static class Config {
+        private Map<String, String> config = new HashMap<>();
+        
+        public Config() {
+            config.put("Command.Ban", "ban");
+            config.put("Command.TempBan", "tempban");
+            config.put("Command.Unban", "unban");
+            config.put("Command.Check", "check");
+            config.put("Ban-Disconnect", "false");
+        }
+        
+        public String getString(String key) {
+            return config.getOrDefault(key, "default");
+        }
+        
+        public boolean getBoolean(String key) {
+            return Boolean.parseBoolean(config.getOrDefault(key, "false"));
+        }
+    }
 }
