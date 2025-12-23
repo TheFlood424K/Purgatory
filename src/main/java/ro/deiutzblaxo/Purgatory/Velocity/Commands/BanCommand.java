@@ -23,6 +23,7 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import ro.deiutzblaxo.Purgatory.Velocity.MainVelocity;
+import ro.deiutzblaxo.Purgatory.Utils.Messages;
 
 import java.util.Optional;
 import java.util.UUID;
