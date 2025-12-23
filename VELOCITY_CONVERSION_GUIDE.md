@@ -43,6 +43,21 @@ src/main/java/ro/deiutzblaxo/Purgatory/Velocity/
 **BungeeCord Pattern:**
 ```java
 public class BanCommand extends Command {
+
+**✅ COMPLETED:** All 8 Velocity command classes have been successfully refactored to use the Messages utility class.
+
+**Completed Files:**
+- BanCommand.java - Refactored with Messages.sendMessage() for ban operations
+- TempBanCommand.java - Refactored with duration validation and message keys  
+- UnbanCommand.java - Refactored with unban success/failure messages
+- CheckCommand.java - Refactored with status check message display
+- EditCommand.java - Refactored with ban detail editing messages
+- TeleportCommand.java - Refactored with teleport operation messages
+- ReloadCommand.java - Refactored with config reload messages
+- PurgatoryCommand.java (Help) - Refactored with complete help menu system
+
+**Configuration:**
+- messages.yml - Created with all message keys and placeholder support
     public BanCommand(String name, MainBungee plugin) {
         super(name);
         this.plugin = plugin;
