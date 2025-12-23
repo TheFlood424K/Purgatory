@@ -3,15 +3,15 @@ package ro.deiutzblaxo.Purgatory.Velocity.Commands;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import ro.deiutzblaxo.Purgatory.Velocity.MainVelocity;
 import ro.deiutzblaxo.Purgatory.Utils.ConfigManager;
+import ro.deiutzblaxo.Purgatory.Utils.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReloadCommand implements SimpleCommand {
+
     private final ProxyServer server;
     private final MainVelocity plugin;
 
@@ -23,18 +23,18 @@ public class ReloadCommand implements SimpleCommand {
     @Override
     public void execute(Invocation invocation) {
         if (!(invocation.source() instanceof Player)) {
-            invocation.source().sendMessage(Component.text("Only players can use this command."));
+            Messages.sendMessage(invocation.source(), "playerOnly");
             return;
         }
 
         Player sender = (Player) invocation.source();
-        
+
         // Reload configuration
         try {
             ConfigManager.reload();
-            sender.sendMessage(Component.text("Configuration reloaded successfully!").color(NamedTextColor.GREEN));
+            Messages.sendMessage(sender, "configReload");
         } catch (Exception e) {
-            sender.sendMessage(Component.text("Failed to reload configuration: " + e.getMessage()).color(NamedTextColor.RED));
+            Messages.sendMessage(sender, "configReloadFail", e.getMessage());
         }
     }
 
