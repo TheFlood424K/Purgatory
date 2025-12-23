@@ -3,70 +3,75 @@ package ro.deiutzblaxo.Purgatory.Velocity.Commands;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
 import ro.deiutzblaxo.Purgatory.Velocity.MainVelocity;
-import ro.deiutzblaxo.Purgatory.Utils.ConfigManager;
+import ro.deiutzblaxo.Purgatory.Utils.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class CheckCommand implements SimpleCommand {
+    
     private final ProxyServer server;
     private final MainVelocity plugin;
-
+    
     public CheckCommand(ProxyServer server, MainVelocity plugin) {
         this.server = server;
         this.plugin = plugin;
     }
-
+    
     @Override
     public void execute(Invocation invocation) {
+        // Only players can use this command
         if (!(invocation.source() instanceof Player)) {
-            invocation.source().sendMessage(Component.text("Only players can use this command."));
             return;
         }
-
+        
         Player sender = (Player) invocation.source();
         String[] args = invocation.arguments();
-
-        if (args.length < 1) {
-            Component usage = Component.text("Correct usage: /check <player>")
-                    .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
-                    .clickEvent(ClickEvent.suggestCommand("/check <player>"));
-            sender.sendMessage(usage);
+        
+        // Permission check
+        if (!sender.hasPermission("purgatory.check")) {
+            Messages.sendMessage(sender, "noPermission");
             return;
         }
-
+        
+        // Usage check
+        if (args.length < 1) {
+            Messages.sendMessage(sender, "invalidUsage",
+                "usage", "/check <player>");
+            return;
+        }
+        
         String playerName = args[0];
         Optional<Player> targetOpt = server.getPlayer(playerName);
         
         if (!targetOpt.isPresent()) {
-            String notFound = ConfigManager.getMessage("playerNotFound").replace("%player%", playerName);
-            sender.sendMessage(Component.text(notFound));
+            Messages.sendMessage(sender, "playerNotFound",
+                "player", playerName);
             return;
         }
-
+        
         Player target = targetOpt.get();
         
-        // Check player status (ban, IP, server location)
-        String checkMessage = ConfigManager.getMessage("checkPlayer")
-                .replace("%player%", target.getUsername())
-                .replace("%server%", target.getCurrentServer()
-                        .map(s -> s.getServerInfo().getName())
-                        .orElse("None"))
-                .replace("%ip%", target.getRemoteAddress().getAddress().getHostAddress());
+        // Get player information
+        String serverName = target.getCurrentServer()
+            .map(s -> s.getServerInfo().getName())
+            .orElse("None");
+        String ipAddress = target.getRemoteAddress().getAddress().getHostAddress();
         
-        sender.sendMessage(Component.text(checkMessage));
+        // Send check information
+        Messages.sendMessage(sender, "checkPlayer",
+            "player", target.getUsername(),
+            "server", serverName,
+            "ip", ipAddress);
     }
-
+    
     @Override
     public boolean hasPermission(Invocation invocation) {
         return invocation.source().hasPermission("purgatory.check");
     }
-
+    
     @Override
     public List<String> suggest(Invocation invocation) {
         List<String> suggestions = new ArrayList<>();
