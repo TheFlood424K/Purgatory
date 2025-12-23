@@ -437,4 +437,36 @@ public class BanCommand implements SimpleCommand {
 
 ---
 
+## ✅ Latest Progress Update
+
+### Step 1 Progress: Messages Utility Class
+
+**COMPLETED:**
+- ✅ Created `Messages.java` utility class in `Utils/` package
+  - Uses Velocity's Adventure API for message handling
+  - Supports placeholder replacement (%player%, %reason%, etc.)
+  - Provides `sendMessage(Player, messageKey, ...)` for easy message sending
+  - Includes default messages for all ban/unban operations
+  - Compatible with Velocity's modern Component-based messaging
+
+### Next Steps
+
+**Command Classes - IN PROGRESS:**
+- Started adding Messages import to command classes
+- BanCommand.java: Added Messages import ✅
+- Remaining commands need full refactoring to use Messages class:
+  - Replace `plugin.getConfigManager().getMessages().getString("key")` with `Messages.getMessage("key", ...)`
+  - Replace `sender.sendMessage(deserialize(...))` with `Messages.sendMessage(player, "messageKey", ...)`
+  - Remove local `deserialize()` methods (Messages class handles this)
+
+**Commands to Update:**
+- [ ] BanCommand.java (import added, logic pending)
+- [ ] TempBanCommand.java
+- [ ] UnbanCommand.java
+- [ ] CheckCommand.java
+- [ ] EditCommand.java
+- [ ] TeleportCommand.java
+- [ ] PurgatoryCommand.java
+- [ ] ReloadCommand.java
+
 Good luck with your conversion! The foundation is solid, and with your Java expertise, you should be able to complete the remaining files efficiently using these patterns.
