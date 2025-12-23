@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Configuration Manager for Purgatory plugin
@@ -15,6 +16,7 @@ import java.util.Map;
 public class ConfigManager {
     private static Path dataDirectory;
     private static Map<String, String> messages = new HashMap<>();
+        private static Map<UUID, Integer> warnings = new HashMap<>();
     
     // Default messages
     static {
@@ -88,7 +90,23 @@ public class ConfigManager {
 
         /**
      * Helper method to get string from a map
-     * @param map The map to get from
+     
+     
+         /**
+     * Load warnings from storage
+     * TODO: Implement actual file loading
+     */
+    public static void loadWarnings() {
+        // Stub implementation - warnings will be loaded from file in production
+    }
+    
+    /**
+     * Get the warnings map
+     * @return The warnings map
+     */
+    public static Map<UUID, Integer> getWarnings() {
+        return warnings;
+    }* @param map The map to get from
      * @param key The key
      * @return The value or default
      */
@@ -124,6 +142,10 @@ public class ConfigManager {
         
         public boolean getBoolean(String key) {
             return Boolean.parseBoolean(config.getOrDefault(key, "false"));
-        }
+     
+        
+                public int getInt(String key) {
+            return Integer.parseInt(config.getOrDefault(key, "0"));
+        }}
     }
 }
