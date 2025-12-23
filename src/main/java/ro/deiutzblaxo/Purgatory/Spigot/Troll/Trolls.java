@@ -625,7 +625,7 @@ public class Trolls implements Listener{
 								plugin.getConfigManager().getMessages().getString("Troll.Infection.Title"))) {
 							if(!plugin.Infection.containsKey(user.getUniqueId())) {
 								plugin.Infection.put(user.getUniqueId() , plugin.getConfig().getInt("Troll.Cooldown.Infection"));
-								cheater.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION , (10*20) , 4));
+								cheater.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA , (10*20) , 4));
 
 							}else {
 								user.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("Troll.onCooldown")
@@ -661,7 +661,7 @@ public class Trolls implements Listener{
 								plugin.getConfigManager().getMessages().getString("Troll.Paralysis.Title"))) {
 							if(!plugin.Paralysis.containsKey(user.getUniqueId())) {
 								plugin.Paralysis.put(user.getUniqueId() , plugin.getConfig().getInt("Troll.Cooldown.Paralysis"));
-								cheater.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING , 10*20 ,10));
+								cheater.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE , 10*20 ,10));
 							}else {
 								user.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("Troll.onCooldown")
 										.replaceAll("%cooldown%", plugin.Paralysis.get(user.getUniqueId()) + "")));
@@ -694,7 +694,7 @@ public class Trolls implements Listener{
 								plugin.getConfigManager().getMessages().getString("Troll.Slow.Title"))) {
 							if(!plugin.Slow.containsKey(user.getUniqueId())) {
 								plugin.Slow.put(user.getUniqueId() , plugin.getConfig().getInt("Troll.Cooldown.Slow"));
-								cheater.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,5*20,4));
+								cheater.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,5*20,4));
 							}else {
 								user.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("Troll.onCooldown")
 										.replaceAll("%cooldown%", plugin.Slow.get(user.getUniqueId()) + "")));
