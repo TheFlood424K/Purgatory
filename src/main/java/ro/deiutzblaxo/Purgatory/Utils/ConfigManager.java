@@ -16,7 +16,7 @@ import java.util.UUID;
 public class ConfigManager {
     private static Path dataDirectory;
     private static Map<String, String> messages = new HashMap<>();
-        private static Map<UUID, Integer> warnings = new HashMap<>();
+    private static Map<UUID, Integer> warnings = new HashMap<>();
     
     // Default messages
     static {
@@ -24,7 +24,7 @@ public class ConfigManager {
         messages.put("banMessage", "You have been banned by %sender% for: %reason%");
         messages.put("tempBanMessage", "You have been temporarily banned for %time% by %sender% for: %reason%");
         messages.put("unbanSuccess", "Player %player% has been unbanned by %sender%.");
-        messages.put("checkPlayer", "Player: %player%\nServer: %server%\nIP: %ip%");
+        messages.put("checkPlayer", "Player: %player%\\nServer: %server%\\nIP: %ip%");
         messages.put("editBan", "Ban reason for %player% has been updated to: %reason% by %sender%");
         messages.put("teleportSuccess", "Teleporting to %player% on server %server%");
         messages.put("banConfirm", "Player %player% has been banned.");
@@ -71,8 +71,8 @@ public class ConfigManager {
     public static String getMessage(String key) {
         return messages.getOrDefault(key, "Message not found: " + key);
     }
-
-        /**
+    
+    /**
      * Get all messages from the config
      * @return The messages map
      */
@@ -87,12 +87,8 @@ public class ConfigManager {
     public static Path getDataDirectory() {
         return dataDirectory;
     }
-
-        /**
-     * Helper method to get string from a map
-     
-     
-         /**
+    
+    /**
      * Load warnings from storage
      * TODO: Implement actual file loading
      */
@@ -106,7 +102,11 @@ public class ConfigManager {
      */
     public static Map<UUID, Integer> getWarnings() {
         return warnings;
-    }* @param map The map to get from
+    }
+    
+    /**
+     * Helper method to get string from a map
+     * @param map The map to get from
      * @param key The key
      * @return The value or default
      */
@@ -142,10 +142,10 @@ public class ConfigManager {
         
         public boolean getBoolean(String key) {
             return Boolean.parseBoolean(config.getOrDefault(key, "false"));
-     
+        }
         
-                public int getInt(String key) {
+        public int getInt(String key) {
             return Integer.parseInt(config.getOrDefault(key, "0"));
-        }}
+        }
     }
 }
