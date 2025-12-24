@@ -1,4 +1,4 @@
-new BanCommand(server, this)    new BanCommand(this)// Purgatory , a ban system for servers of Minecraft
+// Purgatory , a ban system for servers of Minecraft
 // Copyright (C) 2020 Deiutz
 //
 // This program is free software: you can redistribute it and/or modify
