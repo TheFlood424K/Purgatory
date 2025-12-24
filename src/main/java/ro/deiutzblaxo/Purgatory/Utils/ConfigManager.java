@@ -17,6 +17,7 @@ public class ConfigManager {
     private static Path dataDirectory;
     private static Map<String, String> messages = new HashMap<>();
     private static Map<String, Object> warnings = new HashMap<>();
+        private static Map<String, Object> bans = new HashMap<>();
     
     // Default messages
     static {
@@ -110,6 +111,22 @@ public class ConfigManager {
      */
     public static void saveWarnings() {
         // Stub implementation - warnings will be saved to file in production
+    }
+
+        /**
+     * Get the bans map
+     * @return The bans map
+     */
+    public static Map<String, Object> getBans() {
+        return bans;
+    }
+    
+    /**
+     * Save bans to storage
+     * TODO: Implement actual file saving
+     */
+    public static void saveBans() {
+        // Stub implementation - bans will be saved to file in production
     }
     
     /**
