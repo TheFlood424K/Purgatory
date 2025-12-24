@@ -32,6 +32,8 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
+import ro.deiutzblaxo.Purgatory.Utils.Messages;
+
 public class SpigotCommunication {
     protected MainVelocity plugin;
     public static final MinecraftChannelIdentifier CHANNEL = MinecraftChannelIdentifier.from("purgatory:main");
@@ -61,22 +63,24 @@ public class SpigotCommunication {
                 Player player = playerOpt.get();
                 
                 if(plugin.getConfigManager().getConfig().getBoolean("UnBan-Disconnect")) {
-                    Optional<RegisteredServer> hubOpt = plugin.getServerManager().getHubServer();
+                    String hubServerName = plugin.getServerManager().getHubServer();
+                    Optional<RegisteredServer> hubOpt = plugin.getServer().getServer(hubServerName);
                     if(hubOpt.isPresent()) {
                         player.createConnectionRequest(hubOpt.get()).fireAndForget();
                     }
                     
-                    String message = plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "UnBanFormat")
-                        .replaceAll("%admin%", plugin.getConfigManager().getMessages().getString("TasksCompleted"));
+                    String message = Messages.get("UnBanFormat")
+                        .replaceAll("%admin%", Messages.get("TasksCompleted"));
                     player.disconnect(deserialize(message));
                 } else {
-                    Optional<RegisteredServer> hubOpt = plugin.getServerManager().getHubServer();
+                    String hubServerName = plugin.getServerManager().getHubServer();
+                    Optional<RegisteredServer> hubOpt = plugin.getServer().getServer(hubServerName);
                     if(hubOpt.isPresent()) {
                         player.createConnectionRequest(hubOpt.get()).fireAndForget();
                     }
                     
-                    String message = plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "UnBanFormat")
-                        .replaceAll("%admin%", plugin.getConfigManager().getMessages().getString("TasksCompleted"));
+                    String message = Messages.get("UnBanFormat")
+                        .replaceAll("%admin%", Messages.get("TasksCompleted"));
                     player.sendMessage(deserialize(message));
                 }
             }
@@ -101,7 +105,8 @@ public class SpigotCommunication {
             plugin.getLogger().warn("UNAVAILABLE TYPE AT ro.deiutzblaxo.Purgatory.Velocity.SpigotCommunication.class AT send method");
         }
         
-        Optional<RegisteredServer> purgatoryOpt = plugin.getServerManager().getPurgatoryServer();
+        String purgatoryServerName = plugin.getServerManager().getPurgatoryServer();
+        Optional<RegisteredServer> purgatoryOpt = plugin.getServer().getServer(purgatoryServerName);
         if(purgatoryOpt.isPresent()) {
             purgatoryOpt.get().sendPluginMessage(CHANNEL, output.toByteArray());
         }
