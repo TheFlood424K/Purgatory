@@ -69,8 +69,8 @@ public class SpigotCommunication {
                         player.createConnectionRequest(hubOpt.get()).fireAndForget();
                     }
                     
-                    String message = Messages.get("UnBanFormat")
-                        .replaceAll("%admin%", Messages.get("TasksCompleted"));
+                    String message = Messages.getMessage("UnBanFormat")
+                        .replaceAll("%admin%", Messages.getMessage("TasksCompleted"));
                     player.disconnect(deserialize(message));
                 } else {
                     String hubServerName = plugin.getServerManager().getHubServer();
@@ -79,8 +79,8 @@ public class SpigotCommunication {
                         player.createConnectionRequest(hubOpt.get()).fireAndForget();
                     }
                     
-                    String message = Messages.get("UnBanFormat")
-                        .replaceAll("%admin%", Messages.get("TasksCompleted"));
+                    String message = Messages.getMessage("UnBanFormat")
+                        .replaceAll("%admin%", Messages.getMessage("TasksCompleted"));
                     player.sendMessage(deserialize(message));
                 }
             }
