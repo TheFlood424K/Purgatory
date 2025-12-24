@@ -16,7 +16,7 @@ import java.util.UUID;
 public class ConfigManager {
     private static Path dataDirectory;
     private static Map<String, String> messages = new HashMap<>();
-    private static Map<UUID, Integer> warnings = new HashMap<>();
+    private static Map<String, Object> warnings = new HashMap<>();
     
     // Default messages
     static {
@@ -100,11 +100,11 @@ public class ConfigManager {
      * Get the warnings map
      * @return The warnings map
      */
-    public static Map<UUID, Integer> getWarnings() {
+    public static Map<String, Object> getWarnings() {
         return warnings;
     }
-
-        /**
+    
+    /**
      * Save warnings to storage
      * TODO: Implement actual file saving
      */
