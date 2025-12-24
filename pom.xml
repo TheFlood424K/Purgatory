@@ -133,9 +133,9 @@
         
         <!-- Spigot Profile -->
         <profile>
-            <id>paper</id>
+            <id>spigot</id>
             <properties>
-                <build.finalName>Purgatory-Paper</build.finalName>
+                <build.finalName>Purgatory-Spigot</build.finalName>
             </properties>
             <build>
                 <finalName>${build.finalName}</finalName>
