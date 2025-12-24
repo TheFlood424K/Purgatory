@@ -1,4 +1,5 @@
-// Purgatory , a ban system for servers of Minecraft
+75
+    // Purgatory , a ban system for servers of Minecraft
 // Copyright (C) 2020 Deiutz
 //
 // This program is free software: you can redistribute it and/or modify
@@ -72,7 +73,7 @@ public class MainVelocity {
     public void onProxyInitialization(ProxyInitializeEvent event) {
         logger.info("Initializing Purgatory plugin for Velocity...");
         
-        setConfigManager(new ServerManager(this)    new ServerManager()new ConfigManager());
+        setConfigManager(new ConfigManager());
         setServerManager(new ServerManager(this));
         setBanFactory(new ro.deiutzblaxo.Purgatory.Velocity.Factory.BanFactory(this));
         setWarningFactory(new ro.deiutzblaxo.Purgatory.Velocity.Factory.WarningFactory(this));
@@ -111,37 +112,37 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.TempBan")).build(),
-            new TempBanCommand(server, this)
+            new TempBanCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.UnBan")).build(),
-            new UnbanCommand(server, this)
+            new UnbanCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Info")).build(),
-            new CheckCommand(server, this)
+            new CheckCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Warning")).build(),
-            new ReloadCommand(server, this)
+            new ReloadCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpp")).build(),
-            new TeleportCommand(server, this)
+            new TeleportCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpo")).build(),
-            new EditCommand(server, this)
+            new EditCommand(this)
         );
         
         commandManager.register(
             commandManager.metaBuilder("purgatory").build(),
-            new PurgatoryCommand(server, this)
+            new PurgatoryCommand(this)
         );
     }
     
