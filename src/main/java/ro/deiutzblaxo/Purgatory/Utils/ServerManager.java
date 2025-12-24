@@ -75,4 +75,13 @@ public class ServerManager {
         playerServers.clear();
         playerConnectTimes.clear();
     }
+
+        /**
+     * Get the purgatory server name from config
+     * @return The purgatory server name
+     */
+    public static String getPurgatoryServer() {
+        // TODO: Load from config - for now return default
+        return "purgatory";
+    }
 }
