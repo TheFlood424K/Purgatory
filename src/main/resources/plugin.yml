@@ -1,0 +1,9 @@
+name: Purgatory
+version: 5.1.2-1.21.10
+main: ro.deiutzblaxo.Purgatory.Spigot.MainSpigot
+api-version: 1.21
+author: Deiutz
+authors: [Deiutz, TheFlood424K]
+description: Advanced ban system for Minecraft servers with custom tasks, warnings, and purgatory worlds
+website: https://www.spigotmc.org/resources/65838/
+softdepend: [PlaceholderAPI, Citizens, WorldGuard]
