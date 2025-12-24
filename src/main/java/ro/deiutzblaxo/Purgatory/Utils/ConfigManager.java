@@ -103,6 +103,14 @@ public class ConfigManager {
     public static Map<UUID, Integer> getWarnings() {
         return warnings;
     }
+
+        /**
+     * Save warnings to storage
+     * TODO: Implement actual file saving
+     */
+    public static void saveWarnings() {
+        // Stub implementation - warnings will be saved to file in production
+    }
     
     /**
      * Helper method to get string from a map
