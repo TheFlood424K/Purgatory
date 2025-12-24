@@ -16,6 +16,7 @@
 package ro.deiutzblaxo.Purgatory.Velocity.Factory;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -27,6 +28,7 @@ import com.velocitypowered.api.scheduler.ScheduledTask;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
+import ro.deiutzblaxo.Purgatory.Utils.Messages;
 import ro.deiutzblaxo.Purgatory.Velocity.MainVelocity;
 
 public class BanFactory {
@@ -50,20 +52,22 @@ public class BanFactory {
                         if(playerOpt.isPresent()) {
                             Player player = playerOpt.get();
                             if(plugin.getConfigManager().getConfig().getBoolean("UnBan-Disconnect")) {
-                                Optional<RegisteredServer> hubOpt = plugin.getServerManager().getHubServer();
+                                String hubServerName = plugin.getServerManager().getHubServer();
+                                Optional<RegisteredServer> hubOpt = plugin.getServer().getServer(hubServerName);
                                 if(hubOpt.isPresent()) {
                                     player.createConnectionRequest(hubOpt.get()).fireAndForget();
                                 }
-                                String message = plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "UnBanFormat")
-                                    .replaceAll("%admin%",plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "TempBanExpired"));
+                                String message = Messages.get("UnBanFormat")
+                                    .replaceAll("%admin%", Messages.get("TempBanExpired"));
                                 player.disconnect(deserialize(message));
                             } else {
-                                Optional<RegisteredServer> hubOpt = plugin.getServerManager().getHubServer();
+                                String hubServerName = plugin.getServerManager().getHubServer();
+                                Optional<RegisteredServer> hubOpt = plugin.getServer().getServer(hubServerName);
                                 if(hubOpt.isPresent()) {
                                     player.createConnectionRequest(hubOpt.get()).fireAndForget();
                                 }
-                                String message = plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "UnBanFormat")
-                                    .replaceAll("%admin%",plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "TempBanExpired"));
+                                String message = Messages.get("UnBanFormat")
+                                    .replaceAll("%admin%", Messages.get("TempBanExpired"));
                                 player.sendMessage(deserialize(message));
                             }
                         }
@@ -75,64 +79,82 @@ public class BanFactory {
         }).repeat(1, TimeUnit.SECONDS).schedule();
     }
     
+    @SuppressWarnings("unchecked")
     public void setBan(UUID uuid, String reason, String Name) {
         plugin.getConfigManager().loadBans();
-        plugin.getConfigManager().getBans().set(uuid.toString() + ".Reason", reason);
-        plugin.getConfigManager().getBans().set(uuid.toString() + ".Name", Name);
+        Map<String, Object> bans = plugin.getConfigManager().getBans();
+        
+        Map<String, Object> banData = new HashMap<>();
+        banData.put("Reason", reason);
+        banData.put("Name", Name);
+        bans.put(uuid.toString(), banData);
+        
         if(plugin.getConfigManager().getConfig().getBoolean("Remove-Warnings-On-Ban")) {
             plugin.getConfigManager().loadWarnings();
-            plugin.getConfigManager().getWarnings().set(uuid.toString(), null);
+            plugin.getConfigManager().getWarnings().remove(uuid.toString());
             plugin.getConfigManager().saveWarnings();
-            plugin.getConfigManager().saveBans();
-            Optional<Player> playerOpt = plugin.getServer().getPlayer(uuid);
-            if(playerOpt.isPresent()) {
-                Optional<RegisteredServer> purgatoryOpt = plugin.getServerManager().getPurgatoryServer();
-                if(purgatoryOpt.isPresent()) {
-                    playerOpt.get().createConnectionRequest(purgatoryOpt.get()).fireAndForget();
-                }
-            }
-            String send = "ban*" + reason + "*" + Name;
-            plugin.getSpigotCommunication().send(uuid, send.split("\\*"));
         }
+        plugin.getConfigManager().saveBans();
+        Optional<Player> playerOpt = plugin.getServer().getPlayer(uuid);
+        if(playerOpt.isPresent()) {
+            String purgatoryServerName = plugin.getServerManager().getPurgatoryServer();
+            Optional<RegisteredServer> purgatoryOpt = plugin.getServer().getServer(purgatoryServerName);
+            if(purgatoryOpt.isPresent()) {
+                playerOpt.get().createConnectionRequest(purgatoryOpt.get()).fireAndForget();
+            }
+        }
+        String send = "ban*" + reason + "*" + Name;
+        plugin.getSpigotCommunication().send(uuid, send.split("\\*"));
     }
     
     public boolean isBan(UUID uuid) {
         plugin.getConfigManager().loadBans();
-        if(plugin.getConfigManager().getBans().contains(uuid.toString())) {
-            return true;
-        }
-        return false;
+        return plugin.getConfigManager().getBans().containsKey(uuid.toString());
     }
     
+    @SuppressWarnings("unchecked")
     public boolean isBan(String str) {
         plugin.getConfigManager().loadBans();
-        for(String string : plugin.getConfigManager().getBans().getKeys()) {
-            if(plugin.getConfigManager().getBans().contains(string + ".Name")) {
-                if(plugin.getConfigManager().getBans().getString(string + ".Name").equalsIgnoreCase(str)) {
-                    return true;
+        Map<String, Object> bans = plugin.getConfigManager().getBans();
+        for(Map.Entry<String, Object> entry : bans.entrySet()) {
+            if(entry.getValue() instanceof Map) {
+                Map<String, Object> banData = (Map<String, Object>) entry.getValue();
+                if(banData.containsKey("Name")) {
+                    String name = (String) banData.get("Name");
+                    if(name != null && name.equalsIgnoreCase(str)) {
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
     
+    @SuppressWarnings("unchecked")
     public void removeBan(String str) {
         plugin.getConfigManager().loadBans();
-        for(String string : plugin.getConfigManager().getBans().getKeys()) {
-            if(plugin.getConfigManager().getBans().contains(string + ".Name")) {
-                if(plugin.getConfigManager().getBans().getString(string + ".Name").equalsIgnoreCase(str)) {
-                    removeBan(UUID.fromString(string));
+        Map<String, Object> bans = plugin.getConfigManager().getBans();
+        for(Map.Entry<String, Object> entry : bans.entrySet()) {
+            if(entry.getValue() instanceof Map) {
+                Map<String, Object> banData = (Map<String, Object>) entry.getValue();
+                if(banData.containsKey("Name")) {
+                    String name = (String) banData.get("Name");
+                    if(name != null && name.equalsIgnoreCase(str)) {
+                        removeBan(UUID.fromString(entry.getKey()));
+                        return;
+                    }
                 }
             }
         }
     }
     
     public void removeBan(UUID uuid) {
-        plugin.getConfigManager().getBans().set(uuid.toString(), null);
+        plugin.getConfigManager().getBans().remove(uuid.toString());
         plugin.getConfigManager().saveBans();
         Optional<Player> playerOpt = plugin.getServer().getPlayer(uuid);
         if(playerOpt.isPresent()) {
-            Optional<RegisteredServer> hubOpt = plugin.getServerManager().getHubServer();
+            String hubServerName = plugin.getServerManager().getHubServer();
+            Optional<RegisteredServer> hubOpt = plugin.getServer().getServer(hubServerName);
             if(hubOpt.isPresent()) {
                 playerOpt.get().createConnectionRequest(hubOpt.get()).fireAndForget();
             }
@@ -156,9 +178,14 @@ public class BanFactory {
         }
     }
     
+    @SuppressWarnings("unchecked")
     public String getReason(Player player) {
         if(isBan(player.getUniqueId())) {
-            return plugin.getConfigManager().getBans().getString(player.getUniqueId().toString() + ".Reason");
+            Object banDataObj = plugin.getConfigManager().getBans().get(player.getUniqueId().toString());
+            if(banDataObj instanceof Map) {
+                Map<String, Object> banData = (Map<String, Object>) banDataObj;
+                return (String) banData.get("Reason");
+            }
         }
         return null;
     }
