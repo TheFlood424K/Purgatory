@@ -120,7 +120,7 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Info")).build(),
-            new CheckCommand(this)
+            new CheckCommand(server, this)
         );
         
         commandManager.register(
