@@ -704,7 +704,7 @@ public class Trolls implements Listener{
 								plugin.getConfigManager().getMessages().getString("Troll.JumpBoost.Title"))) {
 							if(!plugin.JumpBoost.containsKey(user.getUniqueId())) {
 								plugin.JumpBoost.put(user.getUniqueId() , plugin.getConfig().getInt("Troll.Cooldown.JumpBoost"));
-								cheater.addPotionEffect(new PotionEffect(PotionEffectType.JUMP , 10*20 , 10));
+								cheater.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST , 10*20 , 10));
 							}else {
 								user.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("Troll.onCooldown")
 										.replaceAll("%cooldown%", plugin.JumpBoost.get(user.getUniqueId()) + "")));
