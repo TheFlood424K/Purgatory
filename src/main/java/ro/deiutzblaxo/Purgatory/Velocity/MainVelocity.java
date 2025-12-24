@@ -1,4 +1,3 @@
-75
     // Purgatory , a ban system for servers of Minecraft
 // Copyright (C) 2020 Deiutz
 //
