@@ -134,7 +134,9 @@ public class BanCommand extends Command{
 					.getString(plugin.getConfigManager().getMessages(), "Ban.broadcast")
 					.replaceAll("%player%", player.getName()).replaceAll("%admin%", sender.getName().replaceAll("%reason%", reason))));
 			if(player.isOnline()) {
+				if(plugin.getWorldManager().getPurgatory() != null) {
 				player.getPlayer().teleport(plugin.getWorldManager().getPurgatory().getSpawnLocation());
+			}
 				if(plugin.getConfig().getBoolean("Force-Kick")) {
 
 					player.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getString(plugin.getConfigManager().getMessages(), "Ban.Format").replaceAll("%reason%", reason)));
