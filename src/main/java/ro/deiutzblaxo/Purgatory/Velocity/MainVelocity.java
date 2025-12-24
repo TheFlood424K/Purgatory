@@ -135,12 +135,12 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpo")).build(),
-            new EditCommand(this)
+            new EditCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder("purgatory").build(),
-            new PurgatoryCommand(this)
+            new PurgatoryCommand(server, this)
         );
     }
     
