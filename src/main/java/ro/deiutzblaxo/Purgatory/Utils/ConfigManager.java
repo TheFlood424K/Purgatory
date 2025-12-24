@@ -128,6 +128,30 @@ public class ConfigManager {
     public static void saveBans() {
         // Stub implementation - bans will be saved to file in production
     }
+
+        /**
+     * Load bans from storage
+     * TODO: Implement actual file loading
+     */
+    public static void loadBans() {
+        // Stub implementation - bans will be loaded from file in production
+    }
+
+    /**
+     * Load temp bans from storage
+     * TODO: Implement actual file loading
+     */
+    public static void loadTempBan() {
+        // Stub implementation - temp bans will be loaded from file in production
+    }
+
+    /**
+     * Save temp bans to storage
+     * TODO: Implement actual file saving
+     */
+    public static void saveTempBan() {
+        // Stub implementation - temp bans will be saved to file in production
+    }
     
     /**
      * Helper method to get string from a map
