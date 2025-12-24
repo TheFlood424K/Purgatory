@@ -1,4 +1,4 @@
-// Purgatory , a ban system for servers of Minecraft
+new BanCommand(server, this)    new BanCommand(this)// Purgatory , a ban system for servers of Minecraft
 // Copyright (C) 2020 Deiutz
 //
 // This program is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ public class MainVelocity {
         // Register all commands with their aliases
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Ban")).build(),
-            new BanCommand(server, this)
+            new BanCommand(this)
         );
         
         commandManager.register(
