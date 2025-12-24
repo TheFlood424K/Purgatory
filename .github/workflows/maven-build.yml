@@ -12,21 +12,28 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
-        
-    - name: Build with Maven
-      run: mvn clean package -Pbungee,spigot,velocity      
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: Purgatory-All-Platforms        
-        path: target/*.jar
-        if-no-files-found: error
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+      
+      - name: Build Bungee
+        run: mvn clean package -Pbungee
+      
+      - name: Build Spigot
+        run: mvn package -Pspigot
+      
+      - name: Build Velocity
+        run: mvn package -Pvelocity
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Purgatory-All-Platforms
+          path: target/*.jar
+          if-no-files-found: error
