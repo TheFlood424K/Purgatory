@@ -106,42 +106,42 @@ public class MainVelocity {
         // Register all commands with their aliases
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Ban")).build(),
-            new BanCommand(this)
+            new BanCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.TempBan")).build(),
-            new TempBanCommand(this)
+            new TempBanCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.UnBan")).build(),
-            new UnbanCommand(this)
+            new UnbanCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Info")).build(),
-            new CheckCommand(this)
+            new CheckCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Warning")).build(),
-            new ReloadCommand(this)
+            new ReloadCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpp")).build(),
-            new TeleportCommand(this)
+            new TeleportCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpo")).build(),
-            new EditCommand(this)
+            new EditCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder("purgatory").build(),
-            new PurgatoryCommand(this)
+            new PurgatoryCommand(server, this)
         );
     }
     
