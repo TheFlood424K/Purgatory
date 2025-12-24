@@ -66,8 +66,8 @@
             <scope>provided</scope>
         </dependency>
                 <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
             <version>1.21.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
@@ -133,9 +133,9 @@
         
         <!-- Spigot Profile -->
         <profile>
-            <id>spigot</id>
+            <id>paper</id>
             <properties>
-                <build.finalName>Purgatory-Spigot</build.finalName>
+                <build.finalName>Purgatory-Paper</build.finalName>
             </properties>
             <build>
                 <finalName>${build.finalName}</finalName>
