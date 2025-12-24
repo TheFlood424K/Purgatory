@@ -84,4 +84,13 @@ public class ServerManager {
         // TODO: Load from config - for now return default
         return "purgatory";
     }
+    
+    /**
+     * Get the hub server name from config
+     * @return The hub server name
+     */
+    public static String getHubServer() {
+        // TODO: Load from config - for now return default
+        return "hub";
+    }
 }
