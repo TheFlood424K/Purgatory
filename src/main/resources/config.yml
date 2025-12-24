@@ -1,0 +1,42 @@
+BungeeCord: false
+Command:
+  Ban: ban
+  Purge: purge
+  Info: info
+  TempBan: tempban
+  Warning: warning
+  Cheaters: cheaters
+  Troll: troll
+  tpp: tpp
+  tpo: tpo
+MaxWarnings: 5
+Worlds:
+  Purgatory: hell
+  Default: world
+UpdateChecker: true
+Scoreboard: true
+Force-Spawn-Default-World: false
+Force-Spawn-Purgatory-World: true
+Force-Spawn-Unban: false
+Force-Kick: true
+Title-Warning: false
+ScoreBoard-CountDown-Tasks: true
+Troll:
+  Cooldown:
+    SmokeScreen: 1
+    Burn: 2
+    Flip: 3
+    Creeper: 4
+    Web: 5
+    Lag: 6
+    Mole: 7
+    Infection: 8
+    Storm: 9
+    Miner: 10
+    Paralysis: 11
+    Pumpkin: 12
+    Bouncy: 13
+    Slow: 14
+    JumpBoost: 15
+    Speed: 16
+    MobSquad: 17
