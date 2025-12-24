@@ -115,7 +115,7 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.UnBan")).build(),
-            new UnbanCommand(this)
+            new UnbanCommand(server, this)
         );
         
         commandManager.register(
@@ -125,12 +125,12 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.Warning")).build(),
-            new ReloadCommand(this)
+            new ReloadCommand(server, this)
         );
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.tpp")).build(),
-            new TeleportCommand(this)
+            new TeleportCommand(server, this)
         );
         
         commandManager.register(
