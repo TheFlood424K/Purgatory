@@ -361,7 +361,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 						if(!instance.getServer().getPlayer(uuid).isOnline() || instance.getServer().getPlayer(uuid) == null){SmokeScreen_Effect.remove(uuid);return;}
 						SmokeScreen_Effect.replace(uuid, timeleft - 5);
 						Player player = instance.getServer().getPlayer(uuid);
-						player.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, player.getLocation(), 20);
+						player.getWorld().spawnParticle(Particle.EXPLOSION, player.getLocation(), 20);
 					}
 
 				}
