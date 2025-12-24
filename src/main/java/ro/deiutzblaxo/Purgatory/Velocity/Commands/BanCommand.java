@@ -104,11 +104,15 @@ public class BanCommand implements SimpleCommand {
             player.disconnect(net.kyori.adventure.text.Component.text(
                 Messages.getMessage("banMessage", "sender", senderName, "reason", reason)));
         } else {
-            player.createConnectionRequest(plugin.getServerManager().getPurgatoryServer())
+String purgatoryServerName = plugin.getServerManager().getPurgatoryServer();
+            Optional<com.velocitypowered.api.proxy.server.RegisteredServer> purgatoryOpt = plugin.getServer().getServer(purgatoryServerName);
+            if(purgatoryOpt.isPresent()) {
+                player.createConnectionRequest(purgatoryOpt.get())
                 .fireAndForget();
-            Messages.sendMessage(player, "banMessage",
-                "sender", senderName,
-                "reason", reason);
+                Messages.sendMessage(player, "banMessage",
+                    "sender", senderName,
+                    "reason", reason);
+            }
         }
         
         // Broadcast to sender
