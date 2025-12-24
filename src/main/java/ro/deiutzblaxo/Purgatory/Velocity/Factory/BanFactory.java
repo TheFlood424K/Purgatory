@@ -57,8 +57,8 @@ public class BanFactory {
                                 if(hubOpt.isPresent()) {
                                     player.createConnectionRequest(hubOpt.get()).fireAndForget();
                                 }
-                                String message = Messages.get("UnBanFormat")
-                                    .replaceAll("%admin%", Messages.get("TempBanExpired"));
+                                String message = Messages.getMessage("UnBanFormat")
+                                    .replaceAll("%admin%", Messages.getMessage("TempBanExpired"));
                                 player.disconnect(deserialize(message));
                             } else {
                                 String hubServerName = plugin.getServerManager().getHubServer();
@@ -66,8 +66,8 @@ public class BanFactory {
                                 if(hubOpt.isPresent()) {
                                     player.createConnectionRequest(hubOpt.get()).fireAndForget();
                                 }
-                                String message = Messages.get("UnBanFormat")
-                                    .replaceAll("%admin%", Messages.get("TempBanExpired"));
+                                String message = Messages.getMessage("UnBanFormat")
+                                    .replaceAll("%admin%", Messages.getMessage("TempBanExpired"));
                                 player.sendMessage(deserialize(message));
                             }
                         }
