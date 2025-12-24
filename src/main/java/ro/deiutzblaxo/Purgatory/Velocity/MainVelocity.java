@@ -51,7 +51,7 @@ public class MainVelocity {
     private final ProxyServer server;
     private final Logger logger;
     private final Path dataDirectory;
-    
+  Command(server, this)  
     private ConfigManager configManager;
     private ServerManager serverManager;
     private ro.deiutzblaxo.Purgatory.Velocity.Factory.BanFactory banFactory;
@@ -73,7 +73,7 @@ public class MainVelocity {
         logger.info("Initializing Purgatory plugin for Velocity...");
         
         setConfigManager(new ConfigManager());
-        setServerManager(new ServerManager(this));
+        setServerManager(new ServerManager);
         setBanFactory(new ro.deiutzblaxo.Purgatory.Velocity.Factory.BanFactory(this));
         setWarningFactory(new ro.deiutzblaxo.Purgatory.Velocity.Factory.WarningFactory(this));
         setSpigotCommunication(new SpigotCommunication(this));
@@ -111,7 +111,7 @@ public class MainVelocity {
         
         commandManager.register(
             commandManager.metaBuilder(getConfigManager().getConfig().getString("Command.TempBan")).build(),
-            new TempBanCommand(this)
+            new TempBanCommand(server, this)
         );
         
         commandManager.register(
