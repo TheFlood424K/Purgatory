@@ -72,7 +72,7 @@ public class MainVelocity {
     public void onProxyInitialization(ProxyInitializeEvent event) {
         logger.info("Initializing Purgatory plugin for Velocity...");
         
-        setConfigManager(new ConfigManager(this));
+        setConfigManager(new ServerManager(this)    new ServerManager()new ConfigManager());
         setServerManager(new ServerManager(this));
         setBanFactory(new ro.deiutzblaxo.Purgatory.Velocity.Factory.BanFactory(this));
         setWarningFactory(new ro.deiutzblaxo.Purgatory.Velocity.Factory.WarningFactory(this));
