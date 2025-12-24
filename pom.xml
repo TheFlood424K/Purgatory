@@ -115,4 +115,42 @@
         <scope>provided</scope>
     </dependency>
     </dependencies>
+
+        <profiles>
+        <!-- BungeeCord Profile -->
+        <profile>
+            <id>bungee</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.finalName>Purgatory-Bungee</build.finalName>
+            </properties>
+            <build>
+                <finalName>${build.finalName}</finalName>
+            </build>
+        </profile>
+        
+        <!-- Spigot Profile -->
+        <profile>
+            <id>spigot</id>
+            <properties>
+                <build.finalName>Purgatory-Spigot</build.finalName>
+            </properties>
+            <build>
+                <finalName>${build.finalName}</finalName>
+            </build>
+        </profile>
+        
+        <!-- Velocity Profile -->
+        <profile>
+            <id>velocity</id>
+            <properties>
+                <build.finalName>Purgatory-Velocity</build.finalName>
+            </properties>
+            <build>
+                <finalName>${build.finalName}</finalName>
+            </build>
+        </profile>
+    </profiles>
 </project>
