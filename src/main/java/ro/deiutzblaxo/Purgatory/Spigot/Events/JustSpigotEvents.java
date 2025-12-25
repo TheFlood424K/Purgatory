@@ -156,8 +156,7 @@ public class JustSpigotEvents implements Listener{
 	public void onRespawn(PlayerRespawnEvent e){
 
 		if(plugin.getBanFactory().isBan(e.getPlayer().getUniqueId())) {
-			RespawnArrayList.add(e.getPlayer());
-
+		e.setRespawnLocation(plugin.getWorldManager().getPurgatory().getSpawnLocation());
 		}
 
 	}
