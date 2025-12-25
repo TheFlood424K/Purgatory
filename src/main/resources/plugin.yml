@@ -15,27 +15,18 @@ commands:
   tasks:
     description: View your purgatory tasks
     usage: /tasks
-  ban:
+  purgeban:
     description: Ban a player to purgatory
-    usage: /ban <player> [reason]
-  tempban:
+    usage: /purgeban <player> [reason]
+  purgetempban:
     description: Temporarily ban a player to purgatory
-    usage: /tempban <player> <time> [reason]
-  info:
-    description: Get info about a banned player
-    usage: /info <player>
-  purge:
+    usage: /purgetempban <player> <time> [reason]
+  free:
     description: Remove a player from purgatory
-    usage: /purge <player>
-  warning:
-    description: Warn a player
-    usage: /warning <player> [reason]
-  tpp:
+    usage: /free <player>
+  trolltp:
     description: Teleport to purgatory world
-    usage: /tpp
-  tpo:
-    description: Teleport out of purgatory world
-    usage: /tpo
+    usage: /trolltp
   troll:
     description: Troll a player with effects
     usage: /troll <player> <effect>
