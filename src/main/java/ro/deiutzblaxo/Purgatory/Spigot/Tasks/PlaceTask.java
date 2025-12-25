@@ -49,6 +49,7 @@ public class PlaceTask implements Listener{
 							plugin.getBanFactory().removeBan(player.getUniqueId());
 							plugin.getTaskFactory().removeTasks(player.getUniqueId());
 							plugin.getScoreBoardAPI().removeScoreBroad(player);
+												player.teleport(plugin.getWorldManager().getDefault().getSpawnLocation());
 							if(plugin.isBungeeEnabled()) {
 								String[] send = "unban * test".split("*");
 								plugin.getBungeeCommunication().send(player.getUniqueId(), send);
