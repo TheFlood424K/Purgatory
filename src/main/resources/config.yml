@@ -1,16 +1,12 @@
 BungeeCord: false
 Command:
-  Ban: ban
-  Purge: purge
-  Info: info
+  Ban: purgeban
+  Purge: free
   TempBan: tempban
-  Warning: warning
   Cheaters: cheaters
   Troll: troll
-  tpp: tpp
-  tpo: tpo
-MaxWarnings: 5
-Worlds:
+  tpp: trolltpWorlds:
+  MaxWarnings: 5
   Purgatory: hell
   Default: world
 UpdateChecker: true
