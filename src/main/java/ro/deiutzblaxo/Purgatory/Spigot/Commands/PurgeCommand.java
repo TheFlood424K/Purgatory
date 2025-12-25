@@ -92,9 +92,14 @@ public class PurgeCommand extends Command {
 		}
 		plugin.getBanFactory().removeBan(player.getUniqueId());
 		plugin.getTaskFactory().removeTasks(player.getUniqueId());
-		Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getString
+		Bukk		String broadcastMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getString
 				(plugin.getConfigManager().getMessages(),"Purge.broadcast")
-				.replaceAll("%player%", player.getName()).replaceAll("%admin%", sender.getName())));
+				.replaceAll("%player%", player.getName()).replaceAll("%admin%", sender.getName()));
+		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+			if(onlinePlayer.hasPermission("purgatory.staff")) {
+				onlinePlayer.sendMessage(broadcastMessage);
+			}
+		}
 		if(player.isOnline()) {
 			if(plugin.getConfig().getBoolean("Force-Kick")) {
 				player.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getString
