@@ -130,9 +130,14 @@ public class BanCommand extends Command{
 			}
 
 			plugin.getBanFactory().setBan(player.getUniqueId(), playername , reason);
-			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager()
+						String broadcastMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager()
 					.getString(plugin.getConfigManager().getMessages(), "Ban.broadcast")
-					.replaceAll("%player%", player.getName()).replaceAll("%admin%", sender.getName().replaceAll("%reason%", reason))));
+					.replaceAll("%player%", player.getName()).replaceAll("%admin%", sender.getName().replaceAll("%reason%", reason)));
+			for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+				if(onlinePlayer.hasPermission("purgatory.staff")) {
+					onlinePlayer.sendMessage(broadcastMessage);
+				}
+			}
 			if(player.isOnline()) {
 				if(plugin.getWorldManager().getPurgatory() != null) {
 				player.getPlayer().teleport(plugin.getWorldManager().getPurgatory().getSpawnLocation());
