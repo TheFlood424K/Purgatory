@@ -52,9 +52,6 @@ import ro.deiutzblaxo.Purgatory.Spigot.Commands.PurgatoryCommand;
 import ro.deiutzblaxo.Purgatory.Spigot.Commands.PurgeCommand;
 import ro.deiutzblaxo.Purgatory.Spigot.Commands.TempBanCommand;
 import ro.deiutzblaxo.Purgatory.Spigot.Commands.TrollCommand;
-import ro.deiutzblaxo.Purgatory.Spigot.Commands.WarningCommand;
-import ro.deiutzblaxo.Purgatory.Spigot.Commands.tpoCommand;
-import ro.deiutzblaxo.Purgatory.Spigot.Commands.tppCommand;
 import ro.deiutzblaxo.Purgatory.Spigot.Events.BungeeCommunication;
 import ro.deiutzblaxo.Purgatory.Spigot.Events.JustBungeeEvents;
 import ro.deiutzblaxo.Purgatory.Spigot.Events.JustSpigotEvents;
@@ -104,18 +101,12 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		loadCommandMap();
 		this.commandMap.register("purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
 		this.commandMap.register("purgatory", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
-		this.commandMap.register("purgatory", new PurgatoryCommand("purgatory" , this));
-		this.commandMap.register("purgatry", new ScoreboardCommand("tasks", this ));
-		if(!isBungeeEnabled()) {
+        this.commandMap.register("purgeban", new PurgatoryCommand("purgeban" , this));		this.commandMap.register("purgatry", new ScoreboardCommand("tasks", this ));
 			WorldManager = new WorldManager(this);
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-			this.commandMap.register("purgatory", new BanCommand(this.getConfig().getString("Command.Ban"), this));
-			this.commandMap.register("purgatory", new InfoCommand(this.getConfig().getString("Command.Info") , this));
-			this.commandMap.register("purgatory", new PurgeCommand(this.getConfig().getString("Command.Purge") , this));
-			this.commandMap.register("purgatory", new TempBanCommand(this.getConfig().getString("Command.TempBan") , this));
-			this.commandMap.register("purgatory", new tppCommand(this.getConfig().getString("Command.tpp") , this));
-			this.commandMap.register("purgatory", new tpoCommand(this.getConfig().getString("Command.tpo") , this));
-			this.commandMap.register("purgatory", new WarningCommand(this.getConfig().getString("Command.Warning") , this));
+            this.commandMap.register("purgeban", new BanCommand(this.getConfig().getString("Command.Ban"), this));			this.commandMap.register("purgatory", new InfoCommand(this.getConfig().getString("Command.Info") , this));
+            this.commandMap.register("free", new PurgeCommand(this.getConfig().getString("Command.Purge") , this));			this.commandMap.register("purgatory", new TempBanCommand(this.getConfig().getString("Command.TempBan") , this));
+            this.commandMap.register("trolltp", new tppCommand(this.getConfig().getString("Command.tpp") , this));			this.commandMap.register("purgatory", new tpoCommand(this.getConfig().getString("Command.tpo") , this));
 
 		}
 
