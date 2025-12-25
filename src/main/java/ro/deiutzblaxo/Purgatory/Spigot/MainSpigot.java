@@ -107,7 +107,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
 			this.commandMap.register("purgeban", new BanCommand(this.getConfig().getString("Command.Ban"), this));
 			this.commandMap.register("free", new PurgeCommand(this.getConfig().getString("Command.Purge") , this));
-			this.commandMap.register("purgatory", new TempBanCommand(this.getConfig().getString("Command.TempBan") , this));
+			this.commandMap.register("purgetempban", new TempBanCommand(this.getConfig().getString("Command.TempBan") , this));
 			this.commandMap.register("trolltp", new tppCommand(this.getConfig().getString("Command.tpp") , this));
 		}
 		
