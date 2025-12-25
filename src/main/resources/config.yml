@@ -2,7 +2,7 @@ BungeeCord: false
 Command:
   Ban: purgeban
   Purge: free
-  TempBan: tempban
+  TempBan: purgetempban
   Cheaters: cheaters
   Troll: troll
   tpp: trolltpWorlds:
