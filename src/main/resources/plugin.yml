@@ -8,28 +8,3 @@ description: Advanced ban system for Minecraft servers with custom tasks, warnin
 website: https://www.spigotmc.org/resources/65838/
 softdepend: [PlaceholderAPI, Citizens, WorldGuard]
 
-commands:
-  purgatory:
-    description: Main Purgatory command
-    usage: /purgatory
-  tasks:
-    description: View your purgatory tasks
-    usage: /tasks
-  purgeban:
-    description: Ban a player to purgatory
-    usage: /purgeban <player> [reason]
-  purgetempban:
-    description: Temporarily ban a player to purgatory
-    usage: /purgetempban <player> <time> [reason]
-  free:
-    description: Remove a player from purgatory
-    usage: /free <player>
-  trolltp:
-    description: Teleport to purgatory world
-    usage: /trolltp
-  troll:
-    description: Troll a player with effects
-    usage: /troll <player> <effect>
-  cheaters:
-    description: View list of banned players
-    usage: /cheaters
