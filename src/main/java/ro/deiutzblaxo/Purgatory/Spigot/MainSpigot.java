@@ -18,6 +18,7 @@ package ro.deiutzblaxo.Purgatory.Spigot;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +32,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.command.CommandMap;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -38,6 +40,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.SimplePluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -72,6 +75,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 	private BanFactory BanFactory;
 	private WarningFactory WarningFactory;
 	private TaskFactory TaskFactory;
+	private CommandMap commandMap;
 	private WorldManager WorldManager;
 	private ScoreBoardAPI ScoreBoardAPI;
 	private BungeeCommunication BungeeCommunication;
@@ -92,19 +96,20 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		//TODO data base using MYSQL
 		new Metrics(this);
 		//setting up the commands
-		//setting up the commands
-		getCommand("cheaters").setExecutor(new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
-		getCommand("troll").setExecutor(new TrollCommand(this.getConfig().getString("Command.Troll") , this));
-		getCommand("purgatory").setExecutor(new PurgatoryCommand("purgatory" , this));
-		getCommand("tasks").setExecutor(new ScoreboardCommand("tasks", this ));		
+		loadCommandMap();
+		this.commandMap.register(getName(), "purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
+		this.commandMap.register(getName(), "purgatory", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
+		this.commandMap.register(getName(), "purgeban", new PurgatoryCommand("purgeban" , this));
+		this.commandMap.register(getName(), "purgatry", new ScoreboardCommand("tasks", this ));
+		
 		if(!isBungeeEnabled()) {
 			WorldManager = new WorldManager(this);
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-						getCommand("purgeban").setExecutor(new BanCommand("purgeban", this));
-			getCommand("free").setExecutor(new PurgeCommand("free" , this));
-			getCommand("purgetempban").setExecutor(new TempBanCommand("purgetempban" , this));
-			getCommand("trolltp").setExecutor(new tppCommand("trolltp" , this));
-					}
+			this.commandMap.register(getName(), "purgeban", new BanCommand("purgeban", this));
+			this.commandMap.register(getName(), "free", new PurgeCommand("free" , this));
+			this.commandMap.register(getName(), "purgetempban", new TempBanCommand("purgetempban" , this));
+			this.commandMap.register(getName(), "trolltp", new tppCommand("trolltp" , this));
+		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
 		getServer().getPluginManager().registerEvents(new PlaceTask(this), this);
@@ -156,6 +161,25 @@ public class MainSpigot extends JavaPlugin implements Listener {
 	public Boolean isBungeeEnabled() {
 		return this.getConfig().getBoolean("BungeeCord");
 	}
+	
+	private void loadCommandMap() {
+		try {
+			if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
+				Field f = SimplePluginManager.class.getDeclaredField("commandMap");
+				f.setAccessible(true);
+				this.commandMap = (CommandMap) f.get(Bukkit.getPluginManager());
+			}
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void updateCheckerConsole(Plugin plugin, String prefix, Integer ResourceNumber) {
 		PluginDescriptionFile pdffile = plugin.getDescription();
 		try {
