@@ -86,7 +86,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 	public void onEnable() {
 		instance = this;
 		configmanager = new ConfigManager();
-		getConfigManager().onEnable();
+		getConfigManager().createConfigs();
 		BanFactory = new BanFactory();
 		WarningFactory = new WarningFactory();
 		TaskFactory = new TaskFactory(this);
@@ -95,17 +95,20 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		//TODO SUGGESTIONS : ip bans , make banned chat different from normal chat , Add the ability to give weapons to banned players when they are banned and when they respawn
 		//TODO data base using MYSQL
 		new Metrics(this);
-		this.commandMap.register(purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
+		//setting up the commands
+		loadCommandMap();
+		this.commandMap.register("purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
 		this.commandMap.register("purgatory", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
 		this.commandMap.register("purgeban", new PurgatoryCommand("purgeban" , this));
 		this.commandMap.register("purgatry", new ScoreboardCommand("tasks", this ));
+		
 		if(!isBungeeEnabled()) {
 			WorldManager = new WorldManager(this);
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-			this.commandMap.regiter"("purgeban", new BanCommand(this.getConfig().getString("Command.Ban"), this));
-			this.commandMap.register"(free", new PurgeCommand(this.getConfig().getString("Command.Purge") , this));
-			this.commandMap.regi"ster(purgetempban", new TempBanCommand(this.getConfig().getString("Command.TempBan") , this));
-			this.commandMap.register"(trolltp", new tppCommand(this.getConfig().getString("Command.tpp") , this));
+			this.commandMap.register("purgeban", new BanCommand(this.getConfig().getString("Command.Ban"), this));
+			this.commandMap.register("free", new PurgeCommand(this.getConfig().getString("Command.Purge") , this));
+			this.commandMap.register("purgatory", new TempBanCommand(this.getConfig().getString("Command.TempBan") , this));
+			this.commandMap.register("trolltp", new tppCommand(this.getConfig().getString("Command.tpp") , this));
 		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
@@ -159,7 +162,23 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		return this.getConfig().getBoolean("BungeeCord");
 	}
 	
-	
+	private void loadCommandMap() {
+		try {
+			if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
+				Field f = SimplePluginManager.class.getDeclaredField("commandMap");
+				f.setAccessible(true);
+				this.commandMap = (CommandMap) f.get(Bukkit.getPluginManager());
+			}
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void updateCheckerConsole(Plugin plugin, String prefix, Integer ResourceNumber) {
 		PluginDescriptionFile pdffile = plugin.getDescription();
