@@ -97,18 +97,18 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		new Metrics(this);
 		//setting up the commands
 		loadCommandMap();
-		this.commandMap.register("purgeban", "cheaters", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
-		this.commandMap.register("purgeban", "troll", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
-		this.commandMap.register("purgeban", "purgatory", new PurgatoryCommand("purgeban" , this));
-		this.commandMap.register("purgeban", "tasks", new ScoreboardCommand("tasks", this ));
+		this.commandMap.register(getName(), "cheaters", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
+		this.commandMap.register(getName(), "troll", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
+		this.commandMap.register(getName(), "purgatory", new PurgatoryCommand("purgeban" , this));
+		this.commandMap.register(getName(), "tasks", new ScoreboardCommand("tasks", this ));
 		
 		if(!isBungeeEnabled()) {
 			WorldManager = new WorldManager(this);
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-			this.commandMap.register("purgeban", "purgeban", new BanCommand("purgeban", this));
-			this.commandMap.register("purgeban", "free", new PurgeCommand("free" , this));
-			this.commandMap.register("purgeban", "purgetempban", new TempBanCommand("purgetempban" , this));
-			this.commandMap.register("purgeban", "trolltp", new tppCommand("trolltp" , this));
+			this.commandMap.register(getName(), "purgeban", new BanCommand("purgeban", this));
+			this.commandMap.register(getName(), "free", new PurgeCommand("free" , this));
+			this.commandMap.register(getName(), "purgetempban", new TempBanCommand("purgetempban" , this));
+			this.commandMap.register(getName(), "trolltp", new tppCommand("trolltp" , this));
 		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
