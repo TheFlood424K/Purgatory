@@ -103,6 +103,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 			getCommand("free").setExecutor(new PurgeCommand("free" , this));
 			getCommand("purgetempban").setExecutor(new TempBanCommand("purgetempban" , this));
 			getCommand("trolltp").setExecutor(new tppCommand("trolltp" , this));
+					}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
 		getServer().getPluginManager().registerEvents(new PlaceTask(this), this);
