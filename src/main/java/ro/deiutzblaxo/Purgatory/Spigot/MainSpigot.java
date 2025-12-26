@@ -97,10 +97,10 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		new Metrics(this);
 		//setting up the commands
 		loadCommandMap();
-		this.commandMap.register(getName(), "purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
-		this.commandMap.register(getName(), "purgatory", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
-		this.commandMap.register(getName(), "purgeban", new PurgatoryCommand("purgeban" , this));
-		this.commandMap.register(getName(), "purgatry", new ScoreboardCommand("tasks", this ));
+		this.commandMap.register(getName(), "cheaters", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
+		this.commandMap.register(getName(), "troll", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
+		this.commandMap.register(getName(), "purgatory", new PurgatoryCommand("purgeban" , this));
+		this.commandMap.register(getName(), "tasks", new ScoreboardCommand("tasks", this ));
 		
 		if(!isBungeeEnabled()) {
 			WorldManager = new WorldManager(this);
