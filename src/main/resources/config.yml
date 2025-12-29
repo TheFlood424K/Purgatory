@@ -5,7 +5,7 @@ Command:
   TempBan: purgetempban
   Cheaters: cheaters
   Troll: troll
-  tpp: trolltpWorlds:
+  tpp: trolltpworlds
   MaxWarnings: 5
   Purgatory: hell
   Default: world
