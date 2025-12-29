@@ -103,8 +103,8 @@ public class MainSpigot extends JavaPlugin implements Listener {
 				String banCmd = getConfig().getString("Command.Ban", "purgeban");
 				String tempBanCmd = getConfig().getString("Command.TempBan", "purgetempban");
 				String freeCmd = getConfig().getString("Command.Free", "free");
-				String trolltpCmd = getConfig().getString("Command.Trolltp", "trolltpworlds");
-				String purgatoryCmd = getConfig().getString("Command.Purgatory", "hell");
+				String trolltpCmd = getConfig().getString("Command.Trolltp", "hell");
+				String purgatoryCmd = getConfig().getString("Command.Purgatory", "purgatory");
 				String trollCmd = getConfig().getString("Command.Troll", "troll");
 				String cheatersCmd = getConfig().getString("Command.Cheaters", "cheaters");
 				
