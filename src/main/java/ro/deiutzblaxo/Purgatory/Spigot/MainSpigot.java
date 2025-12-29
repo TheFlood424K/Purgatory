@@ -96,6 +96,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		//TODO data base using MYSQL
 		new Metrics(this);
 		//setting up the commands
+		        WorldManager = new WorldManager(this);
 		loadCommandMap();
 		if (commandMap != null) {
 			try {
