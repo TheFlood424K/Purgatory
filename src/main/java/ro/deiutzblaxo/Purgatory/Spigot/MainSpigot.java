@@ -96,7 +96,9 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		//TODO data base using MYSQL
 		new Metrics(this);
 		//setting up the commands
-				loadCommandMap();
+		loadCommandMap();
+		if (commandMap != null) {
+			try {
 				commandMap.register("purgatory", new BanCommand(getConfig().getString("Command.Ban"), this));
 				commandMap.register("purgatory", new TempBanCommand(getConfig().getString("Command.TempBan"), this));
 				commandMap.register("purgatory", new PurgeCommand(getConfig().getString("Command.Free"), this));
@@ -104,6 +106,14 @@ public class MainSpigot extends JavaPlugin implements Listener {
 				commandMap.register("purgatory", new PurgatoryCommand(getConfig().getString("Command.Purgatory"), this));
 				commandMap.register("purgatory", new TrollCommand(getConfig().getString("Command.Troll"), this));
 				commandMap.register("purgatory", new CheatersCommand(getConfig().getString("Command.Cheaters"), this));
+				getLogger().info("Commands registered successfully!");
+			} catch (Exception e) {
+				getLogger().severe("Failed to register commands: " + e.getMessage());
+				e.printStackTrace();
+			}
+		} else {
+			getLogger().warning("CommandMap is null, commands will use plugin.yml definitions");
+		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
 		getServer().getPluginManager().registerEvents(new PlaceTask(this), this);
