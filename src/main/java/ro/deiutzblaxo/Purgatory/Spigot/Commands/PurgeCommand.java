@@ -113,7 +113,6 @@ public class PurgeCommand extends Command {
 						.replaceAll("%admin%", sender.getName())));
 
 			}
-			player.getPlayer().teleport(plugin.getWorldManager().getDefault().getSpawnLocation());
 		}
 
 
