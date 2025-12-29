@@ -144,8 +144,7 @@ public class JustSpigotEvents implements Listener{
 
 	}
 
-	183
-	(ignoreCancelled = true , priority = EventPriority.HIGHEST)
+	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
 	public void onPickUp(PlayerPickupItemEvent e) {
 		if(e.getPlayer().getWorld().getName().equalsIgnoreCase(plugin.getWorldManager().getPurgatory().getName())) {
 			if(!plugin.getBanFactory().isBan(e.getPlayer().getUniqueId())) {
@@ -153,8 +152,7 @@ public class JustSpigotEvents implements Listener{
 			}
 		}
 	}
-	183
-		(ignoreCancelled = true , priority = EventPriority.HIGHEST)
+	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
 	public void onRespawn(PlayerRespawnEvent e){
 
 		if(plugin.getBanFactory().isBan(e.getPlayer().getUniqueId())) {
@@ -205,7 +203,7 @@ public class JustSpigotEvents implements Listener{
 						e.getCompletions().clear();
 						break;
 					}
-				}else if(args[0].equalsIgnoreCase("/" + plugin.getConfig().getString("Command.Free"))) {
+				}else if(args[0].equalsIgnoreCase("/" + plugin.getConfig().getString("Command.Purge"))) {
 					switch(args.length) {
 					case 1 :
 
@@ -288,4 +286,3 @@ public class JustSpigotEvents implements Listener{
 	}
 	
 }
-
