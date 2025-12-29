@@ -217,19 +217,7 @@ public class JustSpigotEvents implements Listener{
 						break;
 					}
 
-				}else if(args[0].equalsIgnoreCase("/" + plugin.getConfig().getString("Command.Info"))) {
-					switch(args.length) {
-					case 1 :
 
-
-						for(Player player : plugin.getServer().getOnlinePlayers()) {
-							e.getCompletions().add(player.getName());
-						}
-						break;
-					default :
-						e.getCompletions().clear();
-						break;
-					}
 
 				}else if(args[0].equalsIgnoreCase("/" + plugin.getConfig().getString("Command.TempBan"))) {
 					switch(args.length) {
@@ -245,19 +233,7 @@ public class JustSpigotEvents implements Listener{
 						break;
 					}
 
-				}else if(args[0].equalsIgnoreCase("/" + plugin.getConfig().getString("Command.Warning"))) {
-					switch(args.length) {
-					case 1 :
 
-
-						for(Player player : plugin.getServer().getOnlinePlayers()) {
-							e.getCompletions().add(player.getName());
-						}
-						break;
-					default :
-						e.getCompletions().clear();
-						break;
-					}
 
 				}else {
 					e.getCompletions().clear();
