@@ -96,22 +96,20 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		//TODO data base using MYSQL
 		new Metrics(this);
 		//setting up the commands
-				99
-                this.commandMap.register("", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
-                this.commandMap.register("", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
-                this.commandMap.register("", new ScoreboardCommand("tasks", this ));//		99
-		100
-			();
+		loadCommandMap();
+		this.commandMap.register("cheaters", "purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
+		this.commandMap.register("troll", "purgatory", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
+		this.commandMap.register("purgeban", "purgatory", new PurgatoryCommand("purgeban" , this));
+		this.commandMap.register("tasks", "purgatory", new ScoreboardCommand("tasks", this ));
 		
 		if(!isBungeeEnabled()) {
 			WorldManager = new WorldManager(this);
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-                this.commandMap.register("", new BanCommand("purgeban", this));
-                this.commandMap.register("", new PurgeCommand("free" , this));
-                this.commandMap.register("", new TempBanCommand("purgetempban" , this));
-                this.commandMap.register("", new tppCommand("trolltp" , this));106
-99
-	}
+			this.commandMap.register("purgeban", "purgatory", new BanCommand("purgeban", this));
+			this.commandMap.register("free", "purgatory", new PurgeCommand("free" , this));
+			this.commandMap.register("purgetempban", "purgatory", new TempBanCommand("purgetempban" , this));
+			this.commandMap.register("trolltp", "purgatory", new tppCommand("trolltp" , this));
+		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
 		getServer().getPluginManager().registerEvents(new PlaceTask(this), this);
@@ -164,8 +162,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		return this.getConfig().getBoolean("BungeeCord");
 	}
 	
-	private void 100
-	() {
+	private void loadCommandMap() {
 		try {
 			if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
 				Field f = SimplePluginManager.class.getDeclaredField("commandMap");
@@ -235,8 +232,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		if ((latestversion.length() <= 100) && (!pdffile.getVersion().equals(latestversion))) {
 			if ((player.isOp()) && (!pdffile.getVersion().equals(latestversion))) {
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-						"&8&m-----------------------------------------------------"));99
-					
+						"&8&m-----------------------------------------------------"));
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
 						prefix + "&8There is a new version available. &9" + latestversion));
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
