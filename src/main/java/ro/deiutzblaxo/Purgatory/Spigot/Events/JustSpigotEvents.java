@@ -235,9 +235,6 @@ public class JustSpigotEvents implements Listener{
 
 
 
-				}else {
-					e.getCompletions().clear();
-				}
 			}
 		}
 
