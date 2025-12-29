@@ -105,10 +105,10 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		if(!isBungeeEnabled()) {
 			WorldManager = new WorldManager(this);
 			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-			this.commandMap.register("purgatory", "purgeban", new BanCommand("purgeban", this));
-			this.commandMap.register("purgatory", "free", new PurgeCommand("free" , this));
-			this.commandMap.register("purgatory", "purgetempban", new TempBanCommand("purgetempban" , this));
-			this.commandMap.register("purgatory", "trolltp", new tppCommand("trolltp" , this));
+			this.commandMap.register("purgeban", "purgatory", new BanCommand("purgeban", this));
+			this.commandMap.register("free", "purgatory", new PurgeCommand("free" , this));
+			this.commandMap.register("purgetempban", "purgatory", new TempBanCommand("purgetempban" , this));
+			this.commandMap.register("trolltp", "purgatory", new tppCommand("trolltp" , this));
 		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
