@@ -234,7 +234,6 @@ public class MainSpigot extends JavaPlugin implements Listener {
 	
 	public static MainSpigot getInstance() {
 		return instance;
-	}
 	
 	public ConfigManager getConfigManager() {
 		return configmanager;
