@@ -99,13 +99,21 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		loadCommandMap();
 		if (commandMap != null) {
 			try {
-				commandMap.register("purgatory", new BanCommand(getConfig().getString("Command.Ban"), this));
-				commandMap.register("purgatory", new TempBanCommand(getConfig().getString("Command.TempBan"), this));
-				commandMap.register("purgatory", new PurgeCommand(getConfig().getString("Command.Free"), this));
-				commandMap.register("purgatory", new tppCommand(getConfig().getString("Command.Trolltp"), this));
-				commandMap.register("purgatory", new PurgatoryCommand(getConfig().getString("Command.Purgatory"), this));
-				commandMap.register("purgatory", new TrollCommand(getConfig().getString("Command.Troll"), this));
-				commandMap.register("purgatory", new CheatersCommand(getConfig().getString("Command.Cheaters"), this));
+				String banCmd = getConfig().getString("Command.Ban", "purgeban");
+				String tempBanCmd = getConfig().getString("Command.TempBan", "purgetempban");
+				String freeCmd = getConfig().getString("Command.Free", "free");
+				String trolltpCmd = getConfig().getString("Command.Trolltp", "trolltpworlds");
+				String purgatoryCmd = getConfig().getString("Command.Purgatory", "hell");
+				String trollCmd = getConfig().getString("Command.Troll", "troll");
+				String cheatersCmd = getConfig().getString("Command.Cheaters", "cheaters");
+				
+				commandMap.register("purgatory", new BanCommand(banCmd, this));
+				commandMap.register("purgatory", new TempBanCommand(tempBanCmd, this));
+				commandMap.register("purgatory", new PurgeCommand(freeCmd, this));
+				commandMap.register("purgatory", new tppCommand(trolltpCmd, this));
+				commandMap.register("purgatory", new PurgatoryCommand(purgatoryCmd, this));
+				commandMap.register("purgatory", new TrollCommand(trollCmd, this));
+				commandMap.register("purgatory", new CheatersCommand(cheatersCmd, this));
 				getLogger().info("Commands registered successfully!");
 			} catch (Exception e) {
 				getLogger().severe("Failed to register commands: " + e.getMessage());
