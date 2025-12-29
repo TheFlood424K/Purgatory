@@ -107,13 +107,13 @@ public class MainSpigot extends JavaPlugin implements Listener {
 				String trollCmd = getConfig().getString("Command.Troll", "troll");
 				String cheatersCmd = getConfig().getString("Command.Cheaters", "cheaters");
 				
-				commandMap.register("purgatory", new BanCommand(banCmd, this));
-				commandMap.register("purgatory", new TempBanCommand(tempBanCmd, this));
-				commandMap.register("purgatory", new PurgeCommand(freeCmd, this));
-				commandMap.register("purgatory", new tppCommand(trolltpCmd, this));
-				commandMap.register("purgatory", new PurgatoryCommand(purgatoryCmd, this));
-				commandMap.register("purgatory", new TrollCommand(trollCmd, this));
-				commandMap.register("purgatory", new CheatersCommand(cheatersCmd, this));
+				commandMap.register("", new BanCommand(banCmd, this));
+				commandMap.register("", new TempBanCommand(tempBanCmd, this));
+				commandMap.register("", new PurgeCommand(freeCmd, this));
+				commandMap.register("", new tppCommand(trolltpCmd, this));
+				commandMap.register("", new PurgatoryCommand(purgatoryCmd, this));
+				commandMap.register("", new TrollCommand(trollCmd, this));
+				commandMap.register("", new CheatersCommand(cheatersCmd, this));
 				getLogger().info("Commands registered successfully!");
 			} catch (Exception e) {
 				getLogger().severe("Failed to register commands: " + e.getMessage());
