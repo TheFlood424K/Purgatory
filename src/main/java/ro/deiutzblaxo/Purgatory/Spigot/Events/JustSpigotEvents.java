@@ -232,6 +232,7 @@ public class JustSpigotEvents implements Listener{
 						e.getCompletions().clear();
 						break;
 					}
+								}
 
 
 
