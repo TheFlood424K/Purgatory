@@ -235,7 +235,8 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		if ((latestversion.length() <= 100) && (!pdffile.getVersion().equals(latestversion))) {
 			if ((player.isOp()) && (!pdffile.getVersion().equals(latestversion))) {
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-						"&8&m-----------------------------------------------------"));
+						"&8&m-----------------------------------------------------"));99
+					
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
 						prefix + "&8There is a new version available. &9" + latestversion));
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
