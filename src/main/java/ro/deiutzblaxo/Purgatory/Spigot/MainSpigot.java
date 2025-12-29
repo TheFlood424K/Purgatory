@@ -134,6 +134,7 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
 			new PlaceHolderHooker(this).register();
 			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7[&aPurgatory&7]&0 PlaceHolderAPI have been hooked!"));
+					getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
 		}
 		
 		if(Bukkit.getPluginManager().isPluginEnabled("Citizens")) {
