@@ -8,13 +8,4 @@ description: Advanced ban system for Minecraft servers with custom tasks, warnin
 website: https://www.spigotmc.org/resources/65838/
 softdepend: [PlaceholderAPI, Citizens, WorldGuard]
 
-commands:
-  purgeban:
-  purgetempban:
-  free:
-  trolltp:
-  purgatory:
-  tasks:
-  troll:
-  cheaters:
 
