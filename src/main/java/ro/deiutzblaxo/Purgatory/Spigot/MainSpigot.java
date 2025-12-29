@@ -96,19 +96,6 @@ public class MainSpigot extends JavaPlugin implements Listener {
 		//TODO data base using MYSQL
 		new Metrics(this);
 		//setting up the commands
-		loadCommandMap();
-		this.commandMap.register("cheaters", "purgatory", new CheatersCommand(this.getConfig().getString("Command.Cheaters") , this));
-		this.commandMap.register("troll", "purgatory", new TrollCommand(this.getConfig().getString("Command.Troll") , this));
-		this.commandMap.register("purgeban", "purgatory", new PurgatoryCommand("purgeban" , this));
-		this.commandMap.register("tasks", "purgatory", new ScoreboardCommand("tasks", this ));
-		
-		if(!isBungeeEnabled()) {
-			WorldManager = new WorldManager(this);
-			getServer().getPluginManager().registerEvents(new JustSpigotEvents(this), this);
-			this.commandMap.register("purgeban", "purgatory", new BanCommand("purgeban", this));
-			this.commandMap.register("free", "purgatory", new PurgeCommand("free" , this));
-			this.commandMap.register("purgetempban", "purgatory", new TempBanCommand("purgetempban" , this));
-			this.commandMap.register("trolltp", "purgatory", new tppCommand("trolltp" , this));
 		}
 		
 		getServer().getPluginManager().registerEvents(new BreakTask(this), this);
