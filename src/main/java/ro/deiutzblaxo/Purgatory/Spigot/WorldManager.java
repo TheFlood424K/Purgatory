@@ -50,7 +50,7 @@ public class WorldManager {
         String defaultWorldName = plugin.getConfig().getString("Worlds.Default");
         if(purgatoryWorldName != null && defaultWorldName != null 
             && plugin.getServer().getWorld(purgatoryWorldName) != null 
-            && plugin.getServer().getWorld(defaultWorldName) != null)= null) {
+            && plugin.getServer().getWorld(defaultWorldName) != null) {
 			return true;
 		}
 		return false;
