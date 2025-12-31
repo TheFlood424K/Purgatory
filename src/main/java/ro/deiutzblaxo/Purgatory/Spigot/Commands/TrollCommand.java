@@ -33,25 +33,43 @@ public class TrollCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(CommandSender sender, String label, String[] args) {
-		plugin.getConfigManager().loadMessages();
-		if(!sender.hasPermission("purgatory.troll")) {
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getString
-					(plugin.getConfigManager().getMessages(),"NoPermission")));
-			return false;
-            }
+    public boolean execute(CommandSender sender, String label, String[] args) {
+        plugin.getConfigManager().loadMessages();
 
+        // Only players
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("Only players can use this command!");
+            return false;
+        }
+        Player player = (Player) sender;
 
-			if(!plugin.getBanFactory().isBan(player.getUniqueId())) {
-				player.openInventory(troll.TrollsInventory(player));
-				return true;
-			}else {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("Troll.Banned")));
-			}
-		}
+        // NoPermission message with fallback
+        String noPerm = plugin.getConfigManager()
+                .getString(plugin.getConfigManager().getMessages(), "NoPermission");
+        if (noPerm == null) {
+            noPerm = "&cYou don't have permission to use this command.";
+        }
 
-		sender.sendMessage("Only Players can use this command!");
-		return false;
-	}
+        if (!sender.hasPermission("purgatory.troll")) {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', noPerm));
+            return false;
+        }
+
+        // If not banned, open inventory
+        if (!plugin.getBanFactory().isBan(player.getUniqueId())) {
+            player.openInventory(troll.TrollsInventory(player));
+            return true;
+        }
+
+        // Troll.Banned message with fallback
+        String bannedMsg = plugin.getConfigManager()
+                .getMessages().getString("Troll.Banned");
+        if (bannedMsg == null) {
+            bannedMsg = "&cYou cannot use this while banned.";
+        }
+
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', bannedMsg));
+        return false;
+    }
 
 }
