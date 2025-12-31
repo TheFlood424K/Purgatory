@@ -36,8 +36,13 @@ public class TrollCommand extends Command {
 	public boolean execute(CommandSender sender, String arg1, String[] arg2) {
 		if(sender instanceof Player) {
 
+            Player player = (Player) sender;
+            if(!player.hasPermission("purgatory.troll")) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("no-permission")));
+                return true;
+            }
 
-			Player player = (Player) sender;
+
 			if(!plugin.getBanFactory().isBan(player.getUniqueId())) {
 				player.openInventory(troll.TrollsInventory(player));
 				return true;
