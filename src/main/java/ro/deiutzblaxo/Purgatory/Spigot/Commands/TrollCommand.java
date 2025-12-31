@@ -33,13 +33,12 @@ public class TrollCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(CommandSender sender, String arg1, String[] arg2) {
-		if(sender instanceof Player) {
-
-            Player player = (Player) sender;
-            if(!player.hasPermission("purgatory.troll")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getMessages().getString("no-permission")));
-                return true;
+	public boolean execute(CommandSender sender, String label, String[] args) {
+		plugin.getConfigManager().loadMessages();
+		if(!sender.hasPermission("purgatory.troll")) {
+			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfigManager().getString
+					(plugin.getConfigManager().getMessages(),"NoPermission")));
+			return false;
             }
 
 
