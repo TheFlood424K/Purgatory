@@ -46,8 +46,11 @@ public class WorldManager {
 		return false;
 	}
 	public boolean existWorlds() {
-		if(plugin.getServer().getWorld(plugin.getConfig().getString("Worlds.Purgatory")) != null
-				&& plugin.getServer().getWorld(plugin.getConfig().getString("Worlds.Default")) != null) {
+		String purgatoryWorldName = plugin.getConfig().getString("Worlds.Purgatory");
+        String defaultWorldName = plugin.getConfig().getString("Worlds.Default");
+        if(purgatoryWorldName != null && defaultWorldName != null 
+            && plugin.getServer().getWorld(purgatoryWorldName) != null 
+            && plugin.getServer().getWorld(defaultWorldName) != null)= null) {
 			return true;
 		}
 		return false;
