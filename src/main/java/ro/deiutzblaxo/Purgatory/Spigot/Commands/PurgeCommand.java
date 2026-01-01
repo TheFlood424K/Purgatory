@@ -110,8 +110,12 @@ public class PurgeCommand extends Command {
 						.replaceAll("%admin%", sender.getName())));
 
 			}
-			player.getPlayer().teleport(plugin.getWorldManager().getDefault().getSpawnLocation());
-		}
+            World defaultWorld = plugin.getWorldManager().getDefault();
+            if (defaultWorld != null) {
+                player.getPlayer().teleport(defaultWorld.getSpawnLocation());
+            } else {
+                sender.sendMessage(ChatColor.RED + "Error: Default world is not configured!");
+            }		}
 
 
 		return false;
