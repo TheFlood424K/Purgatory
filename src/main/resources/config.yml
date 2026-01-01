@@ -7,8 +7,6 @@ Command:
   Troll: troll
   tpp: trolltpworlds
   MaxWarnings: 5
-  Purgatory: hell
-  Default: world
 UpdateChecker: true
 Scoreboard: true
 Force-Spawn-Default-World: false
@@ -36,3 +34,7 @@ Troll:
     JumpBoost: 15
     Speed: 16
     MobSquad: 17
+
+Worlds:
+  Purgatory: hell
+  Default: world
