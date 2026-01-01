@@ -62,12 +62,12 @@ public class WorldManager {
 
 	}
 	public World getPurgatory() {
-		return	plugin.getServer().getWorld(plugin.getConfig().getString("Worlds.Purgatory"));
-
+        String worldName = plugin.getConfig().getString("Worlds.Purgatory");
+        return worldName != null ? plugin.getServer().getWorld(worldName) : null;
 	}
 	public World getDefault() {
-		return	plugin.getServer().getWorld(plugin.getConfig().getString("Worlds.Default"));
-
+        String worldName = plugin.getConfig().getString("Worlds.Default");
+        return worldName != null ? plugin.getServer().getWorld(worldName) : null;
 	}
 
 
