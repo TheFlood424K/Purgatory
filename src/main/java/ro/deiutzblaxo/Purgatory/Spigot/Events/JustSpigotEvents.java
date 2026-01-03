@@ -107,8 +107,7 @@ public class JustSpigotEvents implements Listener{
 			}
 
 		}else {
-			if(e.getTo().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName())) {
-				player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+			if(e.getTo().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName()) && !e.getFrom().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName())) {				player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
 				player.setAllowFlight(true);
 				player.setCanPickupItems(false);
 			}else {
