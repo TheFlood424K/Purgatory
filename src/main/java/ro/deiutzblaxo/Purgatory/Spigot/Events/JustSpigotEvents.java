@@ -127,7 +127,6 @@ public class JustSpigotEvents implements Listener{
 			}
 			}
 
-	}
 	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
 	public void onDamage(EntityDamageByEntityEvent e) {
 		Entity Damager = e.getDamager();
