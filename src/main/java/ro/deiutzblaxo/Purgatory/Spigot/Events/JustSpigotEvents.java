@@ -107,9 +107,11 @@ public class JustSpigotEvents implements Listener{
 			}
 
 		}else {
-			if(e.getTo().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName()) && !e.getFrom().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName())) {				player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+						if(e.getTo().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName())) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
 				player.setAllowFlight(true);
 				player.setCanPickupItems(false);
+			}
 			}else {
 								// Clean up purgatory effects when leaving
 							if(e.getFrom().getWorld().getName().equalsIgnoreCase(plugin.getWorldManager().getPurgatory().getName())) {
@@ -123,7 +125,7 @@ public class JustSpigotEvents implements Listener{
 
 											}
 				}
-			}
+			};
 			}
 
 	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
