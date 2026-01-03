@@ -21,6 +21,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -111,6 +113,14 @@ public class PurgeCommand extends Command {
 
 			}
 			player.getPlayer().teleport(plugin.getWorldManager().getDefault().getSpawnLocation());
+						// Clean up purgatory effects
+						forPotionEffectpotion.PotionEffect effect : player.getPlayer().getActivePotionEffects()) {
+											if(effect.getType().equalsPotionEffectType.INVISIBILITY)) {
+																	player.getPlayer().removePotionEffect(effect.getType());
+																}
+										}
+						player.getPlayer().setAllowFlight(false);
+						player.getPlayer().setCanPickupItems(true);
 		}
 
 
