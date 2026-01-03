@@ -125,6 +125,7 @@ public class JustSpigotEvents implements Listener{
 											}
 				}
 			}
+			}
 
 		}
 	}
