@@ -252,8 +252,12 @@ public class JustSpigotEvents implements Listener{
 					e.getRecipients().removeAll(this.plugin.getBanFactory().getPlayerList());
 		} else {
 			e.getRecipients().clear();
-			e.getRecipients().addAll(this.plugin.getBanFactory().getPlayerList());
-			e.setFormat(ChatColor.translateAlternateColorCodes('&',
+				// Add only banned players and staff with permission to see banned chat
+				for(Player online : plugin.getServer().getOnlinePlayers()) {
+					if(plugin.getBanFactory().isBan(online.getUniqueId()) || online.hasPermission("purgatory.bannedchat.see")) {
+						e.getRecipients().add(online);
+					}
+				}			e.setFormat(ChatColor.translateAlternateColorCodes('&',
 					String.valueOf(this.plugin.getConfigManager().getMessages().getString("BanChat.Prefix")
 							.replaceAll("%player%", player.getDisplayName())) + e.getMessage()));
 		}
