@@ -124,6 +124,9 @@ public class JustSpigotEvents implements Listener{
 										player.setCanPickupItems(true);
 
 											}
+	  	}
+}
+		}
 				}
 			}
 
