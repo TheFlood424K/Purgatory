@@ -119,9 +119,10 @@ public class JustSpigotEvents implements Listener{
 							player.removePotionEffect(effect.getType());
 						}
 					}
+																	player.setAllowFlight(false);
+									player.setCanPickupItems(true);
+
 											}
-					player.setAllowFlight(false);
-					player.setCanPickupItems(true);
 				}
 			}
 
