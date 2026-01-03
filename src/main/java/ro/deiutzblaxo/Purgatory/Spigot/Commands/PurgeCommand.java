@@ -114,8 +114,7 @@ public class PurgeCommand extends Command {
 			}
 			player.getPlayer().teleport(plugin.getWorldManager().getDefault().getSpawnLocation());
 						// Clean up purgatory effects
-						forPotionEffectpotion.PotionEffect effect : player.getPlayer().getActivePotionEffects()) {
-											if(effect.getType().equalsPotionEffectType.INVISIBILITY)) {
+                        for(PotionEffect effect : player.getPlayer().getActivePotionEffects()) {											if(effect.getType().equalsPotionEffectType.INVISIBILITY)) {
 																	player.getPlayer().removePotionEffect(effect.getType());
 																}
 										}
