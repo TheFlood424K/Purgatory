@@ -112,12 +112,14 @@ public class JustSpigotEvents implements Listener{
 				player.setAllowFlight(true);
 				player.setCanPickupItems(false);
 			}else {
-				if(e.getFrom().getWorld().getName().equals(plugin.getWorldManager().getPurgatory().getName())) {
-					for(PotionEffect effect: player.getActivePotionEffects()) {
+								// Clean up purgatory effects when leaving
+							if(e.getFrom().getWorld().getName().equalsIgnoreCase(plugin.getWorldManager().getPurgatory().getName())) {
+								for(PotionEffect effect: player.getActivePotionEffects()) {
 						if(effect.getType().equals(PotionEffectType.INVISIBILITY)) {
 							player.removePotionEffect(effect.getType());
 						}
 					}
+											}
 					player.setAllowFlight(false);
 					player.setCanPickupItems(true);
 				}
