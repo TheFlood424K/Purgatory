@@ -112,7 +112,7 @@ public class JustSpigotEvents implements Listener{
 				player.setAllowFlight(true);
 				player.setCanPickupItems(false);
 			}
-			}else {
+  else {
 								// Clean up purgatory effects when leaving
 							if(e.getFrom().getWorld().getName().equalsIgnoreCase(plugin.getWorldManager().getPurgatory().getName())) {
 								for(PotionEffect effect: player.getActivePotionEffects()) {
@@ -125,7 +125,6 @@ public class JustSpigotEvents implements Listener{
 
 											}
 				}
-			};
 			}
 
 	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
