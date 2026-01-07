@@ -129,11 +129,13 @@ public class JustSpigotEvents implements Listener{
 }
 				
 	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
-			public void onDamage(EntityDamageByEntityEvent e) 	Entity Damaged = e.getEntity();
+			public void onDamage(EntityDamageByEntityEvent e) 	
+			Entity Damaged = e.getEntity();
 		if(plugin.getBanFactory().isBan(Damaged.getUniqueId()) && Damager.getType().equals(EntityType.PLAYER)) {
 			e.setCancelled(true);
 		}
 	}
+ {		Entity Damager = e.getDamager();
 	@EventHandler(ignoreCancelled = true , priority = EventPriority.HIGHEST)
 	public void onDrop(PlayerDropItemEvent e) {
 
